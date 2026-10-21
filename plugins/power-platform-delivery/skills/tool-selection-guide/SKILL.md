@@ -29,7 +29,7 @@ Install all Power Platform plugins: `/plugin marketplace add microsoft/power-pla
 | **Dataverse SDK for Python** | Scripted schema operations, bulk data, paging, transformations, analytics | Uses the Web API |
 | **pac CLI** | Solution ALM (`pac solution`), environments (`pac admin`), role assignment (`pac admin assign-user`), plug-ins (`pac plugin`), PCF (`pac pcf`), model apps (`pac model`), Copilot Studio (`pac copilot`), pipelines (`pac pipeline`) | `pac copilot mcp --run` exposes pac as a local MCP server (needs .NET 10) |
 | **Dataverse Web API** | Only what managed tools don't cover | Metadata writes with `MSCRM.SolutionUniqueName: <solution>`; read back with `Consistency: Strong` (metadata cache ~30 s) |
-| **Maker designers** | Security role privileges, command bar (modern designer), anything without an API skill | Always inside the working solution |
+| **Maker designers** | Form header fields, command bar (modern designer), anything without an API skill | Always inside the working solution |
 
 ## 3. By task
 
@@ -39,7 +39,8 @@ Install all Power Platform plugins: `/plugin marketplace add microsoft/power-pla
 | Forms, views, sitemap, app module, BPF, business rules | `/app-builder` (model-apps) or `dv-metadata` for forms/views; `pac model create --solution <name>` | `pac model create` without `--solution` (defaults to Default) |
 | Bulk data / migration | `dv-data` → `CreateMultiple`/`UpdateMultiple`/`UpsertMultiple`, `$batch` (≤1,000 ops) | One request per row; MCP for volume |
 | Ad hoc query | Dataverse MCP `read_query` / `dv-query` | Exporting to Excel by hand |
-| Security role assignment | `dv-security` or `pac admin assign-user` / `assign-group` | Editing roles in PROD |
+| Security roles: create, edit privileges, assign | `security-roles-setup` matrix: `/app-builder` `personas[]` / `roleGrants[]`, Web API (`AddPrivilegesRole`, `ReplacePrivilegesRole`, `RemovePrivilegeRole`), `pac admin assign-user` / `assign-group`, `dv-security` | Editing roles in PROD; roles authored only by clicking |
+| Choice column default | Web API `DefaultFormValue` | Hand-edited solution XML |
 | Solution export/import/pack/check | `dv-solution` or `pac solution …` | Opening zips with standard tools |
 | Source control | Dataverse Git integration (dev environments; managed environments required) or `pac solution clone`/`export`+`unpack` | `pac canvas pack/unpack` (deprecated) |
 | Deployment | Pipelines in Power Platform (`pac pipeline deploy`), or GitHub Actions / Azure DevOps Build Tools v2 with a deployment settings file (`pac solution create-settings`) | Manual imports into UAT/PROD |

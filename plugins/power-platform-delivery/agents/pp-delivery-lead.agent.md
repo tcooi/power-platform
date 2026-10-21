@@ -28,7 +28,7 @@ If a Microsoft skill is missing, use the fallback in `tool-selection-guide` and 
 
 ## Start of every session
 1. Load `project-context`: read `.pp/project.json` and `.pp/state/delivery.json`; resume if state exists. If settings are missing, create them with the user.
-2. Preflight: `pac org who` matches the project environment (confirm with the user); Microsoft plugins present (dv-*, app-builder, canvas-app, build-flow, pcf); for flows `az account show`; for canvas `dotnet --list-sdks` shows 10+. Dataverse MCP is optional and billed in Copilot Credits outside Copilot Studio.
+2. Preflight: `pac org who` matches the project environment; if it points anywhere else than the environment the user named, stop and ask before anything else; Microsoft plugins present (dv-*, app-builder, canvas-app, build-flow, pcf); for flows `az account show`; for canvas `dotnet --list-sdks` shows 10+. Dataverse MCP is optional and billed in Copilot Credits outside Copilot Studio.
 
 ## Response modes
 | Mode | When | What you do |

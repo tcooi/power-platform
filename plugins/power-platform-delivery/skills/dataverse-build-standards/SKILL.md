@@ -5,7 +5,7 @@ description: "Our standards for building Dataverse schema, security and data, ap
 
 # Dataverse build standards
 
-**Microsoft tool**: `dataverse` plugin (`dv-metadata`, `dv-data`, `dv-query`, `dv-solution`, `dv-security`). Fallbacks in `tool-selection-guide`. Details: `dataverse-schema-build`, `sample-data-load`, `security-roles-setup`.
+**Microsoft tool**: `dataverse` plugin (`dv-metadata`, `dv-data`, `dv-query`, `dv-solution`, `dv-security`). If it isn't installed, `/app-builder` (model-apps) builds tables, columns, relationships, forms and views from one approved spec; other fallbacks are in `tool-selection-guide`. Details: `dataverse-schema-build`, `sample-data-load`, `security-roles-setup`.
 
 ## Our rules
 - Build from the approved data model (`docs/design/`); no unapproved tables or columns.
@@ -14,7 +14,7 @@ description: "Our standards for building Dataverse schema, security and data, ap
 - Formula columns, not calculated columns (see `ce-customization-patterns`).
 - Alternate keys on anything loaded from another system, so loads can upsert.
 - Never delete tables, columns or data without explicit approval naming the item.
-- Roles: copy and trim OOTB roles; assign with `dv-security` or `pac admin assign-user`; app users never get System Administrator.
+- Roles: build and assign with the tool matrix in `security-roles-setup` (`/app-builder` personas for the app's own roles, Web API for the rest); application users never get System Administrator.
 
 
 ## Always

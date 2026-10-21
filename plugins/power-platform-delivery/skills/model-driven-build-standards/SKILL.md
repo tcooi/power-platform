@@ -14,6 +14,14 @@ description: "Our standards for model-driven apps and changes to out-of-the-box 
 - Forms: key status in header, tabs by phase, few controls on load. Views: the columns users need, quick-find columns, lookup views.
 - Generative pages only where a form/view/dashboard can't do the job; record why.
 
+## What /app-builder can't do, and what to use instead
+| Need | Use |
+|---|---|
+| Fields in the form **header** | Form designer in the maker portal (then export/unpack). Don't hand-edit `formxml`; it needs exact control IDs and a mistake breaks the form. |
+| **Default value** of a Choice column | Web API: update the column (`.../Attributes(LogicalName='<col>')/Microsoft.Dynamics.CRM.PicklistAttributeMetadata`) with `DefaultFormValue` + `MSCRM.SolutionUniqueName`, then publish. It's the *form* default: test one API-created row; if it stays empty, add a business rule or flow for API/import creates. |
+| A view sorted/filtered your way | Don't name it `Active <plural>`: that merges into the table's stock default view and the authored sort and filters are dropped (`--verify` reports the missing sort). Use a distinct name. |
+| Business rules | `businessRules[]` only works where the environment exposes `CreateProcessWithWfomJson`; otherwise the build skips them with a warning. Fall back to the business rule designer. |
+
 
 ## Always
 - Run in the main session (the Microsoft skills ask you questions and wait for approval).

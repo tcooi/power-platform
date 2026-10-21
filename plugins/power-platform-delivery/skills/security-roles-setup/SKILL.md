@@ -1,23 +1,46 @@
 ---
 name: security-roles-setup
-description: "Create Dataverse security roles in the maker/admin UI and assign them to users, groups and application users with Microsoft's dv-security skill or pac admin commands. Use after tables exist."
+description: "Create, edit, assign and remove Dataverse security roles with the right tool: /app-builder personas and roleGrants for the app's own roles, the Web API for privilege edits on any role, pac admin and dv-security for assignment. Use whenever roles, privileges or role assignments change."
 ---
 
 # Security roles setup
 
-## Author roles (UI)
-- Copy the closest OOTB role (e.g. Basic User) and trim; set table privileges and depth (User/BU/Parent-child BU/Org) per the approved matrix.
-- Include privileges for the model-driven app and any custom pages/flows the persona uses; assign the app to the roles.
-- Add roles to the working solution, then export/unpack. Never edit roles directly in UAT/PROD.
+Build roles repeatably with tools, not by clicking. Every change still needs user approval naming the role, the privileges or member, and the environment.
 
-## Assign roles (CLI, verified)
-- Users: `dv-security` skill, or `pac admin assign-user --environment <id|url> --user <upn|objectId> --role "<role>" [--business-unit <id>]`.
-- Application users: `pac admin assign-user … --application-user`; create the app registration + app user with `pac admin create-service-principal --environment <id> --role "<role>"` (default role is **System Administrator** — always pass a least-privilege role).
-- Entra groups as Dataverse teams: `pac admin assign-group --group <objectId> --group-name <name> --team-type AadSecurityGroup --membership-type Members --role "<role>"`.
-- List roles: `pac admin list-roles --environment <id>`.
-- Role changes need a preview and confirmation naming user, role and environment.
+## Which tool for which job
+
+| Task | First choice | Fallback |
+|---|---|---|
+| Create or edit the app's own roles | `/app-builder` `personas[]` (one role per persona; a rebuild sets privileges to exactly what the spec lists) | Web API `POST /roles` + `ReplacePrivilegesRole` |
+| Give an existing role access to new tables | `/app-builder` `roleGrants[]` (adds only) | Web API `AddPrivilegesRole` |
+| Remove privileges from a role `/app-builder` didn't create | Web API `RemovePrivilegeRole` (one) or `ReplacePrivilegesRole` (whole set) | Maker portal role designer |
+| Assign users | `pac admin assign-user` or `dv-security` (previews and confirms) | `/app-builder` `personas[].assignTo.users` (adds only); Web API associate |
+| Assign Entra groups / teams | `pac admin assign-group` | `/app-builder` `personas[].assignTo.teams`; Web API `teamroles_association` |
+| Unassign | Web API disassociate | Power Platform admin center |
+| Application users (integrations, flows) | `pac admin create-service-principal --role "<least-privilege role>"` (defaults to System Administrator otherwise) or `pac admin assign-user --application-user` | Admin center |
+| List roles | `pac admin list-roles --environment <id>` | Web API `GET roles` |
+
+## /app-builder personas (preferred for the app's roles)
+- Each persona declares jobs with per-table privileges: `access` = read, create, write, delete, append, appendTo, assign, share; `scope` = `user` / `businessUnit` / `parentChild` / `organization`.
+- `appAccess: true` (default) adds app read access and links the app to the role, so the app opens for non-admins.
+- It only edits roles it created. A same-name role made elsewhere, or a managed role, is refused: use `roleGrants[]` (add-only) or the Web API for those.
+- `assignTo` only adds members; it never removes.
+- Roles are keyed by (name, business unit): personas with the same name in the same business unit share one role.
+
+## Web API essentials (Microsoft Learn)
+- Create: `POST /roles` with `"businessunitid@odata.bind": "businessunits(<id>)"` and `name`. Add it to the working solution afterwards (`pac solution add-solution-component`) and confirm membership.
+- Privileges: look up IDs in `privileges` (names like `prvCreate<entity>`, `prvRead<entity>`), then call the bound actions `AddPrivilegesRole`, `ReplacePrivilegesRole` or `RemovePrivilegeRole` on `roles(<id>)`. Depth: Basic (user), Local (business unit), Deep (parent-child), Global (organization).
+- Assign: `POST systemusers(<id>)/systemuserroles_association/$ref` with `{"@odata.id": "<org>/api/data/v9.2/roles(<roleid>)"}`; teams through `teamroles_association`. Unassign with `DELETE` on the same `$ref` with `?$id=`.
+- Read back with `roles(<id>)?$expand=roleprivileges_association($select=name)` to verify.
+
+## Platform rules
+- You can't assign a role with more privileges than you hold yourself.
+- Role definitions travel in solutions; **assignments don't**. Re-assign in each environment (script it with pac or the Web API).
+- Roles belong to a business unit; check `businessUnitId` when the org has more than the root one.
+- Least privilege. When not using personas, copy and trim an OOTB role (e.g. Basic User) rather than starting blank.
+- Never edit roles directly in UAT/PROD; ship them in the solution.
 
 ## Verify
-Sign in as a test user per persona and check visibility and CRUD; record results in the test plan.
+Sign in as a test user per persona and check visibility and CRUD. `/app-builder --verify` also checks persona roles grant at least the declared depth.
 
-Sources: learn.microsoft.com/power-platform/developer/cli/reference/admin, …/agents-plugin/reference#dv-security
+Sources: learn.microsoft.com/power-apps/developer/data-platform/webapi/reference/addprivilegesrole, …/reference/entities/role, …/aad-group-team, learn.microsoft.com/power-platform/developer/cli/reference/admin, learn.microsoft.com/power-platform/admin/assign-security-roles

@@ -32,6 +32,21 @@ Lifecycle: discover -> design -> ALM plan -> build -> review/test -> go-live -> 
 | model-driven-app-builder | Builds model-driven apps: app modules, sitemap, forms, views, command bar, business rules and process flows. |
 | pp-quality-governance | Review, test, governance and handover for Power Platform / D365 CE solutions. |
 
+## Prerequisites and connecting
+
+The skills are instructions only. They contain no connectors, scripts or credentials; agents act through tools in your session, so set these up first.
+
+| Need | Used for | Setup |
+|---|---|---|
+| Power Platform CLI (`pac`) | solutions, PCF, plug-ins, checker, auth | install (`dotnet tool install --global Microsoft.PowerApps.CLI.Tool` or the VS Code extension), then `pac auth create --environment <url>`; check with `pac org who` |
+| Azure CLI (`az`) | tokens for the Dataverse Web API | install, `az login --tenant <tenant>`; token via `az account get-access-token --resource <orgUrl>` |
+| Node.js, .NET SDK | PCF builds, plug-in builds | install LTS versions |
+| Git (+ GitHub or Azure DevOps access) | source control, pipelines | pipelines also need an Entra app registration and secrets stored in the CI system |
+| Microsoft Learn MCP | doc lookups | bundled with `pp-delivery-lead` (`.mcp.json`), no setup |
+| Flow and canvas tooling (optional) | create/debug flows, edit canvas apps | install Microsoft's `power-automate` and `canvas-apps` plugins from `microsoft/power-platform-skills` |
+
+Targeting: every agent works on the environment `pac` is currently authenticated to. `pp-delivery-lead` runs a preflight (`pac org who`, `az account show`), shows you the environment and asks you to confirm before building. Use `pac auth select` / `pac org select` to switch.
+
 ## Cross-tool authoring rules
 
 - Layout per plugin: `.claude-plugin/plugin.json`, `agents/<name>.agent.md`, `skills/<name>/SKILL.md`.

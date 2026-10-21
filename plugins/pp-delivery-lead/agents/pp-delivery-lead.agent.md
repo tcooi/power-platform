@@ -23,6 +23,14 @@ Invoke them as sub-agents by name (in Claude Code they appear as `<plugin>:<agen
 
 Skills for testing, UAT, go-live and handover live in pp-quality-governance.
 
+## Preflight (always, before any build)
+Skills here are instructions only; they act through tools already in the session. Check and report before starting:
+1. `pac --version` and `pac auth list` / `pac org who`: show the active environment URL and name to the user and get confirmation. If `pac` is missing or unauthenticated, give the user the exact fix (README "Prerequisites") and stop.
+2. `az account show` (needed for Dataverse Web API tokens): show tenant and account. If missing, ask the user to run `az login`.
+3. Note which MCP tools are available (Microsoft Learn docs is bundled with this plugin; flow and canvas tools come from Microsoft's `power-automate` and `canvas-apps` plugins if installed). Tell the user what is missing for the requested work.
+4. Pass the confirmed environment URL, tenant and solution/publisher into every sub-agent brief. Never let a sub-agent guess the environment.
+Use the Microsoft Learn MCP to verify platform behavior and command syntax when unsure.
+
 ## How to work
 1. Restate the goal and confirm the target environment.
 2. For a full solution follow the phases in order: discover, design (get approval), ALM plan (approval), build (data first, then apps, code, flows, agents), review, test/UAT, go-live, handover. Stop for approval at the end of design and ALM plan.

@@ -1,0 +1,23 @@
+---
+name: dataverse-build-standards
+description: "Our standards for building Dataverse schema, security and data, applied together with Microsoft's dataverse plugin skills (dv-metadata, dv-data, dv-solution, dv-security). Use whenever tables, columns, relationships, roles or data are created or changed."
+---
+
+# Dataverse build standards
+
+**Microsoft tool**: `dataverse` plugin (`dv-metadata`, `dv-data`, `dv-query`, `dv-solution`, `dv-security`). Fallbacks in `tool-selection-guide`. Details: `dataverse-schema-build`, `sample-data-load`, `security-roles-setup`.
+
+## Our rules
+- Build from the approved data model (`docs/design/`); no unapproved tables or columns.
+- Reuse standard tables first; every new name uses the publisher prefix.
+- Dependency order: global choices, parent tables, child tables, relationships, alternate keys, then forms/views.
+- Formula columns, not calculated columns (see `ce-customization-patterns`).
+- Alternate keys on anything loaded from another system, so loads can upsert.
+- Never delete tables, columns or data without explicit approval naming the item.
+- Roles: copy and trim OOTB roles; assign with `dv-security` or `pac admin assign-user`; app users never get System Administrator.
+
+
+## Always
+- Run in the main session (the Microsoft skills ask you questions and wait for approval).
+- Load `.pp/project.json`; confirm environment (`pac org who`), solution and prefix before the first change.
+- After building, confirm every new component is in the solution (`pac solution add-solution-component` if not), export and unpack (or commit via Git integration), and log the result in `.pp/state/delivery.json`.

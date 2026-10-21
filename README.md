@@ -1,78 +1,100 @@
-# ppp - Power Platform marketplace
+# Power Platform delivery marketplace
 
-One marketplace for **Claude Code** and **GitHub Copilot CLI** (also VS Code agent plugins). Both read `.claude-plugin/marketplace.json` and `.claude-plugin/plugin.json`.
+One plugin, `power-platform-delivery`, for **Claude Code** and **GitHub Copilot CLI**. It adds a consultant delivery method (phases, approvals, standards, reviews) on top of **Microsoft's official Power Platform and Dataverse plugins**, which do the building.
+
+## How it fits together
+
+```
+You ──► pp-delivery-lead (main session: asks you, approves, keeps state)
+          │
+          ├─ builds in the main session:
+          │     our *-build-standards skill  +  Microsoft skill
+          │     dataverse-build-standards       dv-metadata, dv-data, dv-security, dv-solution
+          │     model-driven-build-standards    /app-builder, /genpage
+          │     canvas-build-standards          /canvas-app
+          │     flow-build-standards            /build-flow, /debug-flow
+          │     copilot-studio-build-standards  pac copilot
+          │
+          └─ delegates non-interactive work to sub-agents (briefs from spawn-templates):
+                requirements-analyst, solution-designer, alm-architect,
+                the-critic, pro-code-developer, solution-reviewer
+```
+
+Why this split: Microsoft's build skills ask you questions and wait for approval, and sub-agents can't talk to you (and in Copilot don't inherit skills). So building runs in the main session where every installed skill is available; sub-agents get everything they need written into their brief and return assumptions and open questions.
+
+Project settings and progress live in the client repo: `.pp/project.json` (environments, solution, publisher prefix) and `.pp/state/delivery.json` (phase, approvals, decisions, tasks). Sessions resume from them.
 
 ## Install
 
+### 1. This plugin
 Claude Code:
 ```
 /plugin marketplace add tcooi/power-platform
-/plugin install pp-solution-alm@ppp
+/plugin install power-platform-delivery@ppp
 ```
 Copilot CLI:
 ```
 copilot plugin marketplace add tcooi/power-platform
-copilot plugin install pp-solution-alm@ppp
+copilot plugin install power-platform-delivery@ppp
 ```
 
-## Plugins
-
-Lifecycle: discover -> design -> ALM plan -> build -> review/test -> go-live -> handover. Start with `pp-delivery-lead`; it delegates to the others.
-
-These plugins carry the consulting method (phases, approvals, standards). **Building is done with Microsoft's official tooling**, chosen per task by the `tool-selection-guide` skill.
-
-| Plugin | Purpose |
-|---|---|
-| pp-delivery-lead | Orchestrator that breaks a Power Platform / Dynamics 365 CE request into parts and delegates them to specialist agents. |
-| pp-solution-alm | Solution, publisher, environment variable and pipeline discipline for Power Platform delivery. |
-| pro-code-developer | Pro-code development for Power Platform and D365 CE: C# plug-ins, JavaScript web resources, PCF controls, custom APIs and integrations. |
-| canvas-app-builder | Canvas app design and build for Power Platform consultants. |
-| power-automate-builder | Power Automate cloud flow design, build and troubleshooting. |
-| copilot-studio-builder | Copilot Studio agent design and delivery. |
-| pp-discovery-design | Discovery and solution design for Power Platform / D365 CE engagements: requirements, fit-gap, data and security model, design documents. |
-| dataverse-builder | Builds Dataverse schema, security roles and sample data from an approved design. |
-| model-driven-app-builder | Builds model-driven apps: app modules, sitemap, forms, views, command bar, business rules and process flows. |
-| pp-quality-governance | Review, test, governance and handover for Power Platform / D365 CE solutions. |
-
-## Prerequisites and connecting
-
-### 1. Microsoft plugins (recommended; they do the actual building)
-Claude Code:
+### 2. Microsoft plugins (they do the building)
 ```
 /plugin marketplace add microsoft/power-platform-skills
 /plugin install model-apps@power-platform-skills
 /plugin install canvas-apps@power-platform-skills
 /plugin install power-automate@power-platform-skills
 /plugin install pcf@power-platform-skills
-/plugin install dataverse@claude-plugins-official
 ```
-Copilot CLI: same marketplace and plugins, but install Dataverse with `/plugin install dataverse@awesome-copilot`. Then ask: "Connect to my Dataverse environment" (the `dv-connect` skill sets up auth and the Dataverse MCP server).
+Dataverse: Claude Code `/plugin install dataverse@claude-plugins-official`; Copilot `/plugin install dataverse@awesome-copilot`. Then ask "Connect to my Dataverse environment" (`dv-connect`).
 
-### 2. Local tools
+### 3. Local tools
 | Need | Used for | Setup |
 |---|---|---|
-| Power Platform CLI (`pac`) | solutions, environments, roles, plug-ins, PCF, model apps, Copilot Studio, pipelines | `dotnet tool install --global Microsoft.PowerApps.CLI.Tool`, then `pac auth create --environment <url>`; check `pac org who` |
+| Power Platform CLI (`pac`) | solutions, environments, roles, plug-ins, PCF, model apps, Copilot Studio, pipelines | `dotnet tool install --global Microsoft.PowerApps.CLI.Tool`, `pac auth create --environment <url>` |
 | .NET SDK 10+ | canvas-apps plugin, `pac copilot mcp`, plug-in builds | `dotnet --list-sdks` |
 | Node.js 18+ | Dataverse CLI / MCP proxy, power-automate plugin, PCF | |
 | Azure CLI | power-automate plugin, Web API tokens | `az login --allow-no-subscriptions` |
-| Dataverse CLI (preview) | headless data ops, local MCP proxy | `npm install -g @microsoft/dataverse` (installed by `dv-connect`) |
-| Git + GitHub/Azure DevOps | source control, CI/CD | |
+| Git + GitHub / Azure DevOps | source control, CI/CD | |
 
-### 3. Admin setup (once per environment)
-- **Dataverse MCP**: admin turns on "Allow MCP clients to interact with Dataverse MCP server" and enables the client (GitHub Copilot, Claude, or "Dataverse MCP CLI tool") in Power Platform admin center; tenant admin consent for the CLI proxy. Billed in Copilot Credits outside Copilot Studio.
+### 4. Admin setup (once per environment)
+- **Dataverse MCP**: enable "Allow MCP clients to interact with Dataverse MCP server" and the client (GitHub Copilot, Claude, or "Dataverse MCP CLI tool") in Power Platform admin center; tenant admin consent for the CLI proxy. Billed in Copilot Credits outside Copilot Studio.
 - **Managed environments** for pipeline targets and Dataverse Git integration.
-- **Canvas apps**: coauthoring on in Power Apps Studio for apps edited by the plugin.
+- **Coauthoring** on in Power Apps Studio for canvas apps edited by the plugin.
 
-Microsoft Learn MCP is bundled with `pp-delivery-lead`. Targeting: agents work on the environment `pac` is authenticated to; `pp-delivery-lead` runs a preflight and asks you to confirm it.
+## Start
 
-## Cross-tool authoring rules
+Run the lead as the main agent:
+```bash
+claude --agent power-platform-delivery:pp-delivery-lead
+```
+```bash
+copilot --agent=pp-delivery-lead
+```
+It loads `.pp/project.json` (or creates it with you), runs a preflight, picks a response mode (direct, lightweight, standard, full) and works through discover → design (critic, approval) → build → review/test → go-live → handover.
 
-- Layout per plugin: `.claude-plugin/plugin.json`, `agents/<name>.agent.md`, `skills/<name>/SKILL.md`.
-- Agents: frontmatter only `name` + `description` (no `tools:`/`model:`, which differ between tools).
-- Skills (`SKILL.md`) are portable. Avoid `commands/` (Claude Code only).
-- Add a plugin: create the folder, then add an entry to `.claude-plugin/marketplace.json`. Bump `version` on every change or users won't get updates.
-- Validate: `python3 scripts/validate.py`
+## Contents
 
-## Sub-agents
+**Agents**: pp-delivery-lead (main), requirements-analyst, solution-designer, alm-architect, the-critic, pro-code-developer, solution-reviewer.
 
-Agents delegate to each other. Do not set `tools:` in agent frontmatter: omitted means all tools, which includes delegation in both Claude Code (`Agent`, up to 3 levels deep) and Copilot (`agent`). Specialists must be installed alongside `pp-delivery-lead`.
+**Skills**:
+- Method: project-context, spawn-templates, tool-selection-guide
+- Discovery and design: fit-gap-analysis, data-model-design, security-model-design, solution-design-document
+- Build standards: dataverse-, model-driven-, canvas-, flow-, copilot-studio-build-standards
+- Build details: dataverse-schema-build, sample-data-load, security-roles-setup, app-modules-forms-views, command-bar-power-fx, business-rules-and-bpf, canvas-performance-delegation, canvas-component-library, flow-error-handling-pattern, flow-dataverse-triggers, agent-instructions-design, agent-evaluation-plan
+- Pro-code: ce-customization-patterns, plugin-development, web-resource-js, pcf-control, custom-api-and-actions
+- ALM: plan-alm, environment-strategy, source-control-unpack, solution-alm-checklist, github-actions-pipeline, azure-devops-pipeline
+- Quality and release: solution-checker-review, security-governance-review, test-strategy, uat-plan, go-live-checklist, handover-documentation
+
+Microsoft Learn MCP is bundled (`.mcp.json`).
+
+## Upgrading from 1.x
+The ten 1.x plugins (pp-delivery-lead, dataverse-builder, …) are merged into `power-platform-delivery`. Uninstall the old ones, then install this plugin.
+
+## Authoring rules (cross-tool)
+- Layout: `plugins/power-platform-delivery/{.claude-plugin/plugin.json, agents/<name>.agent.md, skills/<name>/SKILL.md, .mcp.json}`.
+- Agent frontmatter: only `name` and quoted `description`; no `tools:` (omitted = all tools, including delegation in both tools).
+- Sub-agents never ask the user; the lead owns approvals.
+- No `commands/` (Claude Code only).
+- Bump `version` in `plugin.json` and `marketplace.json` on every change.
+- Validate: `python3 scripts/validate.py` and `claude plugin validate .`

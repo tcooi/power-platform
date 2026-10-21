@@ -24,7 +24,7 @@
       "name": "pp-solution-alm",
       "source": "./plugins/pp-solution-alm",
       "description": "Solution, publisher, environment variable and pipeline discipline for Power Platform delivery.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "keywords": [
         "alm",
         "solutions",
@@ -35,7 +35,7 @@
       "name": "d365-ce-developer",
       "source": "./plugins/d365-ce-developer",
       "description": "Dynamics 365 Customer Engagement customization and development.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "keywords": [
         "dynamics-365",
         "dataverse",
@@ -48,7 +48,7 @@
       "name": "canvas-app-builder",
       "source": "./plugins/canvas-app-builder",
       "description": "Canvas app design and build for Power Platform consultants.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "keywords": [
         "canvas-apps",
         "power-fx"
@@ -58,7 +58,7 @@
       "name": "power-automate-builder",
       "source": "./plugins/power-automate-builder",
       "description": "Power Automate cloud flow design, build and troubleshooting.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "keywords": [
         "power-automate",
         "flows"
@@ -68,10 +68,60 @@
       "name": "copilot-studio-builder",
       "source": "./plugins/copilot-studio-builder",
       "description": "Copilot Studio agent design and delivery.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "keywords": [
         "copilot-studio",
         "agents"
+      ]
+    },
+    {
+      "name": "pp-discovery-design",
+      "source": "./plugins/pp-discovery-design",
+      "description": "Discovery and solution design for Power Platform / D365 CE engagements: requirements, fit-gap, data and security model, design documents.",
+      "version": "1.0.0",
+      "keywords": [
+        "discovery",
+        "fit-gap",
+        "design",
+        "requirements"
+      ]
+    },
+    {
+      "name": "dataverse-builder",
+      "source": "./plugins/dataverse-builder",
+      "description": "Builds Dataverse schema, security roles and sample data from an approved design.",
+      "version": "1.0.0",
+      "keywords": [
+        "dataverse",
+        "tables",
+        "security-roles",
+        "pac"
+      ]
+    },
+    {
+      "name": "model-driven-app-builder",
+      "source": "./plugins/model-driven-app-builder",
+      "description": "Builds model-driven apps: app modules, sitemap, forms, views, command bar, business rules and process flows.",
+      "version": "1.0.0",
+      "keywords": [
+        "model-driven",
+        "forms",
+        "views",
+        "sitemap",
+        "command-bar"
+      ]
+    },
+    {
+      "name": "pp-quality-governance",
+      "source": "./plugins/pp-quality-governance",
+      "description": "Review, test, governance and handover for Power Platform / D365 CE solutions.",
+      "version": "1.0.0",
+      "keywords": [
+        "quality",
+        "testing",
+        "governance",
+        "handover",
+        "uat"
       ]
     }
   ]

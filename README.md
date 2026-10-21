@@ -17,14 +17,20 @@ copilot plugin install pp-solution-alm@ppp
 
 ## Plugins
 
+Lifecycle: discover -> design -> ALM plan -> build -> review/test -> go-live -> handover. Start with `pp-delivery-lead`; it delegates to the others.
+
 | Plugin | Purpose |
 |---|---|
-| pp-delivery-lead | Orchestrator: splits work and delegates to the specialist agents |
-| pp-solution-alm | Solutions, publishers, env vars, pac, pipelines |
-| d365-ce-developer | D365 CE customization, plug-ins, web resources, OOTB app changes |
-| canvas-app-builder | Canvas apps and Power Fx |
-| power-automate-builder | Cloud flows |
-| copilot-studio-builder | Copilot Studio agents |
+| pp-delivery-lead | Orchestrator that breaks a Power Platform / Dynamics 365 CE request into parts and delegates them to specialist agents. |
+| pp-solution-alm | Solution, publisher, environment variable and pipeline discipline for Power Platform delivery. |
+| d365-ce-developer | Dynamics 365 Customer Engagement customization and development. |
+| canvas-app-builder | Canvas app design and build for Power Platform consultants. |
+| power-automate-builder | Power Automate cloud flow design, build and troubleshooting. |
+| copilot-studio-builder | Copilot Studio agent design and delivery. |
+| pp-discovery-design | Discovery and solution design for Power Platform / D365 CE engagements: requirements, fit-gap, data and security model, design documents. |
+| dataverse-builder | Builds Dataverse schema, security roles and sample data from an approved design. |
+| model-driven-app-builder | Builds model-driven apps: app modules, sitemap, forms, views, command bar, business rules and process flows. |
+| pp-quality-governance | Review, test, governance and handover for Power Platform / D365 CE solutions. |
 
 ## Cross-tool authoring rules
 

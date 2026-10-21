@@ -1,0 +1,15 @@
+{
+  "name": "model-driven-app-builder",
+  "description": "Builds model-driven apps: app modules, sitemap, forms, views, command bar, business rules and process flows.",
+  "author": {
+    "name": "tcooi"
+  },
+  "keywords": [
+    "model-driven",
+    "forms",
+    "views",
+    "sitemap",
+    "command-bar"
+  ],
+  "version": "1.0.0"
+}

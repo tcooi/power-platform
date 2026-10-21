@@ -1,0 +1,15 @@
+{
+  "name": "pp-quality-governance",
+  "description": "Review, test, governance and handover for Power Platform / D365 CE solutions.",
+  "author": {
+    "name": "tcooi"
+  },
+  "keywords": [
+    "quality",
+    "testing",
+    "governance",
+    "handover",
+    "uat"
+  ],
+  "version": "1.0.0"
+}

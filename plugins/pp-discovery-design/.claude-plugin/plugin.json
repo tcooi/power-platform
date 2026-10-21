@@ -1,0 +1,14 @@
+{
+  "name": "pp-discovery-design",
+  "description": "Discovery and solution design for Power Platform / D365 CE engagements: requirements, fit-gap, data and security model, design documents.",
+  "author": {
+    "name": "tcooi"
+  },
+  "keywords": [
+    "discovery",
+    "fit-gap",
+    "design",
+    "requirements"
+  ],
+  "version": "1.0.0"
+}

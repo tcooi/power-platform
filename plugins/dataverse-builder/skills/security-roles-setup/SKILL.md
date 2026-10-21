@@ -12,3 +12,6 @@ description: "Create and assign Dataverse security roles, teams and field securi
 5. Create the application user for integrations/flows and assign a minimal role.
 6. Test with each persona: sign in as the test user and verify visibility and CRUD.
 Export roles in the solution; do not hand-edit in PROD.
+
+## Tooling
+Author roles in the admin/maker UI (Power Platform admin center or the solution's Security roles), add them to the solution, then `pac solution export` + unpack to commit. Use the Web API only to read and verify (`roleprivilegescollection`, `systemuserroles`) and to assign roles/teams in bulk. Dataverse MCP can read role assignments but should not change them. See `tool-selection-guide`.

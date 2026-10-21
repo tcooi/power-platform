@@ -10,3 +10,6 @@ Structure: `Try` scope -> `Catch` scope (Configure run after: has failed, timed 
 - Set retry policy on flaky connectors (exponential), timeouts on long waits, and concurrency control deliberately.
 - Terminate with `Failed` in Catch so the run shows as failed.
 - Avoid infinite loops from triggers updating the same row: filter columns and add a guard column.
+
+## Tooling
+Build and validate flows with Microsoft's `power-automate` plugin tools (validate, connections, run diagnosis) when installed. Fallback: write the flow into a solution via the Dataverse Web API `workflow` table (`clientdata` JSON), which has no pre-save validation, so test in DEV and read run history afterward. See `tool-selection-guide`.

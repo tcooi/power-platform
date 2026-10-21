@@ -14,3 +14,6 @@ description: "Create Dataverse tables, columns and relationships in a solution v
 7. Wait for propagation (30-60s) before creating dependents; retry on 'not found' metadata errors.
 
 Prefer defining the schema as JSON files under `src/schema/` so it is repeatable across environments, but ship via the solution, not by re-running scripts, for TEST/PROD.
+
+## Choosing the tool
+Web API is the default for repeatable schema; use the maker portal for one-off tweaks (then export/unpack). Dataverse MCP (if connected) is for reading/validating, not for solution-aware schema. See `tool-selection-guide`.

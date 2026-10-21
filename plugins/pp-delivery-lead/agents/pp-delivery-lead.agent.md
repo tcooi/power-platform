@@ -27,7 +27,8 @@ Skills for testing, UAT, go-live and handover live in pp-quality-governance.
 Skills here are instructions only; they act through tools already in the session. Check and report before starting:
 1. `pac --version` and `pac auth list` / `pac org who`: show the active environment URL and name to the user and get confirmation. If `pac` is missing or unauthenticated, give the user the exact fix (README "Prerequisites") and stop.
 2. `az account show` (needed for Dataverse Web API tokens): show tenant and account. If missing, ask the user to run `az login`.
-3. Note which MCP tools are available (Microsoft Learn docs is bundled with this plugin; flow and canvas tools come from Microsoft's `power-automate` and `canvas-apps` plugins if installed). Tell the user what is missing for the requested work.
+3. Note which MCP tools are available: Microsoft Learn docs (bundled with this plugin), a Dataverse MCP server (ad hoc data reads and small edits) and flow/canvas tools from Microsoft's `power-automate` and `canvas-apps` plugins. Tell the user what is missing for the requested work and which fallback applies.
+3a. Follow the `tool-selection-guide` skill to choose between `pac`, the Web API, Dataverse MCP, designers and plugins, and tell sub-agents which tool to use in their brief.
 4. Pass the confirmed environment URL, tenant and solution/publisher into every sub-agent brief. Never let a sub-agent guess the environment.
 Use the Microsoft Learn MCP to verify platform behavior and command syntax when unsure.
 

@@ -42,8 +42,11 @@ The skills are instructions only. They contain no connectors, scripts or credent
 | Azure CLI (`az`) | tokens for the Dataverse Web API | install, `az login --tenant <tenant>`; token via `az account get-access-token --resource <orgUrl>` |
 | Node.js, .NET SDK | PCF builds, plug-in builds | install LTS versions |
 | Git (+ GitHub or Azure DevOps access) | source control, pipelines | pipelines also need an Entra app registration and secrets stored in the CI system |
+| Dataverse MCP (optional) | quick reads and small edits of data | connect Microsoft's Dataverse MCP server to your client; availability varies, see Microsoft docs |
 | Microsoft Learn MCP | doc lookups | bundled with `pp-delivery-lead` (`.mcp.json`), no setup |
 | Flow and canvas tooling (optional) | create/debug flows, edit canvas apps | install Microsoft's `power-automate` and `canvas-apps` plugins from `microsoft/power-platform-skills` |
+
+Which tool for which task is in the `tool-selection-guide` skill (`pp-delivery-lead`).
 
 Targeting: every agent works on the environment `pac` is currently authenticated to. `pp-delivery-lead` runs a preflight (`pac org who`, `az account show`), shows you the environment and asks you to confirm before building. Use `pac auth select` / `pac org select` to switch.
 

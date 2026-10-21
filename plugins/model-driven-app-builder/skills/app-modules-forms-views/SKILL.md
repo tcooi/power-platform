@@ -11,3 +11,6 @@ description: "Create app modules, sitemap, forms and views for a model-driven ap
 4. Views: public views for lists, with quick find fields; add a lookup view per table used in lookups.
 5. Customize OOTB forms by creating a copy in your solution (or using form fallback ordering) to avoid upgrade conflicts.
 6. Publish, test as each persona, check form load time (fewer controls, deferred tabs).
+
+## Tooling
+Build in the modern app designer and form/view designers in the maker portal, with the solution selected. Then run `pac solution export` and `pac solution unpack` to commit the result. Do not hand-write FormXml/SiteMap XML except to resolve a diff. The Web API can verify what exists (`appmodules`, `systemforms`, `savedqueries`). See `tool-selection-guide`.

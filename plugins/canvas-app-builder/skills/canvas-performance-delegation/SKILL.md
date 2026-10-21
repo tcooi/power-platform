@@ -11,3 +11,6 @@ description: "Review canvas app formulas for delegation warnings and performance
 - Minimise controls per screen (< ~300), avoid nested galleries, set images to proper sizes.
 - Use the Monitor tool and Solution Checker/App Checker for hotspots.
 - Raise the data row limit only with a clear reason.
+
+## Tooling
+Use Microsoft's `canvas-apps` plugin for live authoring, compile and app-checker errors when installed; otherwise `pac canvas unpack` / `pac canvas pack` to edit source files, and the Monitor tool in Studio for profiling. See `tool-selection-guide`.

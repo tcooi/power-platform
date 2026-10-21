@@ -10,3 +10,6 @@ description: "Load sample or migration data into Dataverse with batch Web API ca
 - Mark seeded rows (a `source` column or prefix) so they can be cleaned up.
 - Turn off flows/plug-ins that should not fire on bulk loads (bypass flag or temporarily disable) and re-enable after.
 - Never load real personal data into non-production environments.
+
+## Choosing the tool
+Volume goes through the Web API (`$batch`, `CreateMultiple`, `Upsert`). Use Dataverse MCP (if connected) only for a handful of rows or for verification queries. See `tool-selection-guide`.

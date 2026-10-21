@@ -10,3 +10,6 @@ description: "Create business rules and business process flows for model-driven 
 **Business process flows**: stages and steps map to required columns; keep to 3-6 stages; use branching conditions sparingly; one active BPF per record view by default.
 - BPFs are tables: ship them in the solution, assign security roles.
 - Prefer a flow or plug-in for logic that must run regardless of UI.
+
+## Tooling
+Business rules and BPFs are authored in their designers (maker portal) inside the solution, then exported/unpacked via `pac solution`. For logic that must run server-side regardless of UI, use a flow or a plug-in (`pro-code-developer`). See `tool-selection-guide`.

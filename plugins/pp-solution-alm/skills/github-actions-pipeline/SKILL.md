@@ -1,6 +1,6 @@
 ---
 name: github-actions-pipeline
-description: Create GitHub Actions workflows for Power Platform export, check, build and deploy using microsoft/powerplatform-actions. Use for GitHub-based CI/CD.
+description: "Create GitHub Actions workflows for Power Platform export, check, build and deploy using microsoft/powerplatform-actions. Use for GitHub-based CI/CD."
 ---
 
 # GitHub Actions for Power Platform

@@ -1,6 +1,6 @@
 ---
 name: data-model-design
-description: Design Dataverse tables, columns, relationships and choices, reusing standard tables, with an ER diagram. Use when modeling data for a Power Platform solution.
+description: "Design Dataverse tables, columns, relationships and choices, reusing standard tables, with an ER diagram. Use when modeling data for a Power Platform solution."
 ---
 
 # Data model design

@@ -1,6 +1,6 @@
 ---
 name: flow-error-handling-pattern
-description: Standard try/catch/finally scope pattern, retries and alerting for Power Automate flows. Use for any production flow.
+description: "Standard try/catch/finally scope pattern, retries and alerting for Power Automate flows. Use for any production flow."
 ---
 
 # Flow error handling

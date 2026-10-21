@@ -1,6 +1,6 @@
 ---
 name: handover-documentation
-description: Produce the handover pack: admin guide, support runbook, architecture and known issues. Use at project close.
+description: "Produce the handover pack: admin guide, support runbook, architecture and known issues. Use at project close."
 ---
 
 # Handover pack

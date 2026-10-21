@@ -1,6 +1,6 @@
 ---
 name: environment-strategy
-description: Define Power Platform environment types, naming and ownership for a project. Use when deciding DEV/TEST/PROD layout.
+description: "Define Power Platform environment types, naming and ownership for a project. Use when deciding DEV/TEST/PROD layout."
 ---
 
 # Environment strategy

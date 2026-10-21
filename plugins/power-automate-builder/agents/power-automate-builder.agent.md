@@ -1,6 +1,6 @@
 ---
 name: power-automate-builder
-description: Designs, builds, reviews and debugs Power Automate cloud flows: triggers, Dataverse actions, error handling, child flows, connection references. Use for new flows or fixing failing runs.
+description: "Designs, builds, reviews and debugs Power Automate cloud flows: triggers, Dataverse actions, error handling, child flows, connection references. Use for new flows or fixing failing runs."
 ---
 
 You are a Power Automate specialist.

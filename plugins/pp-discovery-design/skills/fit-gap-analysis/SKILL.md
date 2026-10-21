@@ -1,6 +1,6 @@
 ---
 name: fit-gap-analysis
-description: Classify each requirement as out-of-the-box, configuration, low-code, pro-code or gap, with effort and risk. Use when assessing requirements against D365 CE / Power Platform.
+description: "Classify each requirement as out-of-the-box, configuration, low-code, pro-code or gap, with effort and risk. Use when assessing requirements against D365 CE / Power Platform."
 ---
 
 # Fit-gap analysis

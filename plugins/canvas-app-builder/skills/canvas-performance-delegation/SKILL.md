@@ -1,6 +1,6 @@
 ---
 name: canvas-performance-delegation
-description: Review canvas app formulas for delegation warnings and performance. Use when a canvas app is slow or returns incomplete data.
+description: "Review canvas app formulas for delegation warnings and performance. Use when a canvas app is slow or returns incomplete data."
 ---
 
 # Canvas performance and delegation

@@ -1,6 +1,6 @@
 ---
 name: dataverse-schema-build
-description: Create Dataverse tables, columns and relationships in a solution via the Web API / pac. Use when implementing an approved data model.
+description: "Create Dataverse tables, columns and relationships in a solution via the Web API / pac. Use when implementing an approved data model."
 ---
 
 # Dataverse schema build

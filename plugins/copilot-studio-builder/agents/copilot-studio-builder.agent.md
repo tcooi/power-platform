@@ -1,6 +1,6 @@
 ---
 name: copilot-studio-builder
-description: Designs and builds Copilot Studio agents: instructions, knowledge, tools/actions, topics, triggers, authentication, testing and publishing. Use for agent projects on Power Platform.
+description: "Designs and builds Copilot Studio agents: instructions, knowledge, tools/actions, topics, triggers, authentication, testing and publishing. Use for agent projects on Power Platform."
 ---
 
 You are a Copilot Studio specialist.

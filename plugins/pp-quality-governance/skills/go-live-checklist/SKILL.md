@@ -1,6 +1,6 @@
 ---
 name: go-live-checklist
-description: Production deployment and go-live checklist for Power Platform solutions. Use before releasing to PROD.
+description: "Production deployment and go-live checklist for Power Platform solutions. Use before releasing to PROD."
 ---
 
 # Go-live checklist

@@ -1,6 +1,6 @@
 ---
 name: dataverse-architect
-description: Creates and changes Dataverse tables, columns, relationships, choices, keys, security roles and sample data inside a solution, using pac CLI and the Dataverse Web API. Use to implement an approved data model.
+description: "Creates and changes Dataverse tables, columns, relationships, choices, keys, security roles and sample data inside a solution, using pac CLI and the Dataverse Web API. Use to implement an approved data model."
 ---
 
 You build Dataverse schema from an approved data model.

@@ -7,10 +7,10 @@ for p in m["plugins"]:
     if j["name"]!=p["name"] or j.get("version")!=p.get("version"): print("name/version mismatch",p["name"]); bad+=1
     for f in os.listdir(f"{d}/agents"):
         t=open(f"{d}/agents/{f}").read()
-        if not (f.endswith(".agent.md") and re.match(r"---\nname: .+\ndescription: .+\n---",t)): print("bad agent",f); bad+=1
+        if not (f.endswith(".agent.md") and re.match(r"---\nname: .+\ndescription: \".+\"\n---",t)): print("bad agent",f); bad+=1
     sd=f"{d}/skills"
     if os.path.isdir(sd):
         for k in os.listdir(sd):
             t=open(f"{sd}/{k}/SKILL.md").read()
-            if not re.match(r"---\nname: "+re.escape(k)+r"\ndescription: .+\n---",t): print("bad skill",k); bad+=1
+            if not re.match(r"---\nname: "+re.escape(k)+r"\ndescription: \".+\"\n---",t): print("bad skill",k); bad+=1
 print("OK" if not bad else "FAILED"); sys.exit(bad)

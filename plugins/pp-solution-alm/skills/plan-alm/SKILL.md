@@ -1,6 +1,6 @@
 ---
 name: plan-alm
-description: Plan environment strategy and promotion path (DEV, TEST, UAT, PROD) with solutions and pipelines before deploying anything. Use at project start.
+description: "Plan environment strategy and promotion path (DEV, TEST, UAT, PROD) with solutions and pipelines before deploying anything. Use at project start."
 ---
 
 # Plan ALM (planner only: never deploys)

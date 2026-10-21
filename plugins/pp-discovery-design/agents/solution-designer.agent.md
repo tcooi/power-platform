@@ -1,6 +1,6 @@
 ---
 name: solution-designer
-description: Produces the solution architecture: component selection (model-driven vs canvas vs Power Pages, flows vs plug-ins, agents), data model, security model, integration and environment approach. Use after requirements are agreed and before building.
+description: "Produces the solution architecture: component selection (model-driven vs canvas vs Power Pages, flows vs plug-ins, agents), data model, security model, integration and environment approach. Use after requirements are agreed and before building."
 ---
 
 You are a Power Platform solution architect doing design.

@@ -1,6 +1,6 @@
 ---
 name: ce-customization-patterns
-description: Patterns for customizing Dynamics 365 CE forms, command bar, web resources and plug-ins. Use when deciding between config and code, or writing form scripts.
+description: "Patterns for customizing Dynamics 365 CE forms, command bar, web resources and plug-ins. Use when deciding between config and code, or writing form scripts."
 ---
 
 # CE customization patterns

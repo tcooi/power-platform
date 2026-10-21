@@ -1,6 +1,6 @@
 ---
 name: security-governance-review
-description: Review governance: DLP policies, connection and flow ownership, environment settings, roles and licensing. Use before go-live.
+description: "Review governance: DLP policies, connection and flow ownership, environment settings, roles and licensing. Use before go-live."
 ---
 
 # Security and governance review

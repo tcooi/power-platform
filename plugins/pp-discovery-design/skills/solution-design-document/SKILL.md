@@ -1,6 +1,6 @@
 ---
 name: solution-design-document
-description: Write the solution design document (functional + technical) for a Power Platform / D365 CE solution. Use after design decisions are made.
+description: "Write the solution design document (functional + technical) for a Power Platform / D365 CE solution. Use after design decisions are made."
 ---
 
 # Solution design document

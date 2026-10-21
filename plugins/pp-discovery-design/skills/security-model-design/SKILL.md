@@ -1,6 +1,6 @@
 ---
 name: security-model-design
-description: Design the Dataverse security model: business units, security roles, teams, field-level security and sharing. Use when planning access control.
+description: "Design the Dataverse security model: business units, security roles, teams, field-level security and sharing. Use when planning access control."
 ---
 
 # Security model design

@@ -1,6 +1,6 @@
 ---
 name: web-resource-js
-description: Write JavaScript form scripts and web resources for model-driven apps using the formContext pattern. Use when form logic needs code.
+description: "Write JavaScript form scripts and web resources for model-driven apps using the formContext pattern. Use when form logic needs code."
 ---
 
 # Web resource JavaScript

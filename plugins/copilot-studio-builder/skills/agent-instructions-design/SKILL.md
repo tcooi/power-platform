@@ -1,6 +1,6 @@
 ---
 name: agent-instructions-design
-description: Write effective Copilot Studio agent instructions, tool descriptions and knowledge setup. Use when drafting or tuning an agent.
+description: "Write effective Copilot Studio agent instructions, tool descriptions and knowledge setup. Use when drafting or tuning an agent."
 ---
 
 # Agent instructions design

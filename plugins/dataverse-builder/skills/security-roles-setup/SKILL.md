@@ -1,6 +1,6 @@
 ---
 name: security-roles-setup
-description: Create and assign Dataverse security roles, teams and field security profiles from the approved security model. Use after tables exist.
+description: "Create and assign Dataverse security roles, teams and field security profiles from the approved security model. Use after tables exist."
 ---
 
 # Security roles setup

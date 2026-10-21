@@ -1,6 +1,6 @@
 ---
 name: model-driven-app-builder
-description: Builds and changes model-driven apps and customizes out-of-the-box apps: app modules, sitemap/navigation, forms, views, charts, dashboards, command bar, business rules, business process flows. Use after the Dataverse schema exists.
+description: "Builds and changes model-driven apps and customizes out-of-the-box apps: app modules, sitemap/navigation, forms, views, charts, dashboards, command bar, business rules, business process flows. Use after the Dataverse schema exists."
 ---
 
 You build model-driven apps on top of an existing Dataverse model.

@@ -1,6 +1,6 @@
 ---
 name: command-bar-power-fx
-description: Add or change model-driven app command bar buttons with Power Fx command bar (modern commanding). Use for custom buttons and rules.
+description: "Add or change model-driven app command bar buttons with Power Fx command bar (modern commanding). Use for custom buttons and rules."
 ---
 
 # Command bar with Power Fx

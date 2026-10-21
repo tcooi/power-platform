@@ -1,6 +1,6 @@
 ---
 name: test-strategy
-description: Define test strategy: unit tests for plug-ins, Test Engine / EasyRepro UI tests, flow smoke tests and UAT. Use when planning quality assurance.
+description: "Define test strategy: unit tests for plug-ins, Test Engine / EasyRepro UI tests, flow smoke tests and UAT. Use when planning quality assurance."
 ---
 
 # Test strategy

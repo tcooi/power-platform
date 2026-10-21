@@ -1,6 +1,6 @@
 ---
 name: app-modules-forms-views
-description: Create app modules, sitemap, forms and views for a model-driven app. Use when building or restructuring the UI of a model-driven app.
+description: "Create app modules, sitemap, forms and views for a model-driven app. Use when building or restructuring the UI of a model-driven app."
 ---
 
 # App module, forms and views

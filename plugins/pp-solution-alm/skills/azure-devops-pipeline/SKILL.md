@@ -1,6 +1,6 @@
 ---
 name: azure-devops-pipeline
-description: Create Azure DevOps YAML pipelines using Power Platform Build Tools. Use for Azure DevOps-based CI/CD.
+description: "Create Azure DevOps YAML pipelines using Power Platform Build Tools. Use for Azure DevOps-based CI/CD."
 ---
 
 # Azure DevOps pipelines

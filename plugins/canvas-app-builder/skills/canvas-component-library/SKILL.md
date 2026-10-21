@@ -1,6 +1,6 @@
 ---
 name: canvas-component-library
-description: Create and reuse canvas component libraries and a consistent theme. Use for multi-app consistency.
+description: "Create and reuse canvas component libraries and a consistent theme. Use for multi-app consistency."
 ---
 
 # Component library

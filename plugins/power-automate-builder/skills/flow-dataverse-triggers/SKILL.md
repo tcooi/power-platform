@@ -1,6 +1,6 @@
 ---
 name: flow-dataverse-triggers
-description: Configure Dataverse triggers and actions correctly (filter rows, select columns, scope, relationships, upsert). Use when building Dataverse-driven flows.
+description: "Configure Dataverse triggers and actions correctly (filter rows, select columns, scope, relationships, upsert). Use when building Dataverse-driven flows."
 ---
 
 # Dataverse flows

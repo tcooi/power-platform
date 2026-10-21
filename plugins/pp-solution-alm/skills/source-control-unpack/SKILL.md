@@ -1,6 +1,6 @@
 ---
 name: source-control-unpack
-description: Export, unpack and commit solutions to git with a clean folder structure. Use for source-controlled solution development.
+description: "Export, unpack and commit solutions to git with a clean folder structure. Use for source-controlled solution development."
 ---
 
 # Source control for solutions

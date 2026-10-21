@@ -1,6 +1,6 @@
 ---
 name: uat-plan
-description: Write the UAT plan with scenarios, test users, entry/exit criteria and defect handling. Use before user acceptance testing.
+description: "Write the UAT plan with scenarios, test users, entry/exit criteria and defect handling. Use before user acceptance testing."
 ---
 
 # UAT plan

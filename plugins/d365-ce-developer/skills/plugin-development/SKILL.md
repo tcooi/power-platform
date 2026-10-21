@@ -1,6 +1,6 @@
 ---
 name: plugin-development
-description: Write, register and deploy C# plug-ins for Dataverse / D365 CE with pac plugin and plug-in packages. Use when server-side logic is required.
+description: "Write, register and deploy C# plug-ins for Dataverse / D365 CE with pac plugin and plug-in packages. Use when server-side logic is required."
 ---
 
 # Plug-in development

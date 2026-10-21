@@ -1,6 +1,6 @@
 ---
 name: business-rules-and-bpf
-description: Create business rules and business process flows for model-driven apps. Use for form logic and guided stage-based processes.
+description: "Create business rules and business process flows for model-driven apps. Use for form logic and guided stage-based processes."
 ---
 
 # Business rules and BPFs

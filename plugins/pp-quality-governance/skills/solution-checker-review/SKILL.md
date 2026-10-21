@@ -1,6 +1,6 @@
 ---
 name: solution-checker-review
-description: Run and triage pac solution check / Solution Checker results. Use before each release.
+description: "Run and triage pac solution check / Solution Checker results. Use before each release."
 ---
 
 # Solution Checker review

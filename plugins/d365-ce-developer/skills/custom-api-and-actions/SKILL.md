@@ -1,6 +1,6 @@
 ---
 name: custom-api-and-actions
-description: Design Dataverse custom APIs and custom actions with plug-ins as the implementation. Use for reusable server-side operations called from flows, apps or integrations.
+description: "Design Dataverse custom APIs and custom actions with plug-ins as the implementation. Use for reusable server-side operations called from flows, apps or integrations."
 ---
 
 # Custom API

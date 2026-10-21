@@ -1,6 +1,6 @@
 ---
 name: agent-evaluation-plan
-description: Plan and run evaluation of a Copilot Studio agent with test sets covering happy paths, edge cases and safety. Use before publishing.
+description: "Plan and run evaluation of a Copilot Studio agent with test sets covering happy paths, edge cases and safety. Use before publishing."
 ---
 
 # Agent evaluation plan

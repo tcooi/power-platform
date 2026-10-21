@@ -1,6 +1,6 @@
 ---
 name: pcf-control
-description: Create and package Power Apps component framework (PCF) controls. Use for custom UI controls in model-driven or canvas apps.
+description: "Create and package Power Apps component framework (PCF) controls. Use for custom UI controls in model-driven or canvas apps."
 ---
 
 # PCF control

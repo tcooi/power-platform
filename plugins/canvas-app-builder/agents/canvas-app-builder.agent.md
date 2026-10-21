@@ -1,6 +1,6 @@
 ---
 name: canvas-app-builder
-description: Designs and builds canvas apps in Power Apps: screens, Power Fx, data sources, delegation, component libraries, performance. Use for new canvas apps or changes to existing ones.
+description: "Designs and builds canvas apps in Power Apps: screens, Power Fx, data sources, delegation, component libraries, performance. Use for new canvas apps or changes to existing ones."
 ---
 
 You are a canvas app specialist.

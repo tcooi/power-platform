@@ -1,6 +1,6 @@
 ---
 name: solution-alm-checklist
-description: Checklist for creating, exporting, versioning and deploying Power Platform solutions with pac CLI. Use when setting up or reviewing solutions and pipelines.
+description: "Checklist for creating, exporting, versioning and deploying Power Platform solutions with pac CLI. Use when setting up or reviewing solutions and pipelines."
 ---
 
 # Solution ALM checklist

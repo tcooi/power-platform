@@ -19,6 +19,7 @@ copilot plugin install pp-solution-alm@ppp
 
 | Plugin | Purpose |
 |---|---|
+| pp-delivery-lead | Orchestrator: splits work and delegates to the specialist agents |
 | personal-power-platform | Builds into solution `model` / publisher `TC` |
 | pp-solution-alm | Solutions, publishers, env vars, pac, pipelines |
 | d365-ce-developer | D365 CE customization, plug-ins, web resources, OOTB app changes |
@@ -33,3 +34,7 @@ copilot plugin install pp-solution-alm@ppp
 - Skills (`SKILL.md`) are portable. Avoid `commands/` (Claude Code only).
 - Add a plugin: create the folder, then add an entry to `.claude-plugin/marketplace.json`. Bump `version` on every change or users won't get updates.
 - Validate: `python3 scripts/validate.py`
+
+## Sub-agents
+
+Agents delegate to each other. Do not set `tools:` in agent frontmatter: omitted means all tools, which includes delegation in both Claude Code (`Agent`, up to 3 levels deep) and Copilot (`agent`). Specialists must be installed alongside `pp-delivery-lead`.

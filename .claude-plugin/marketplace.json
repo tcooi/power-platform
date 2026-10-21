@@ -9,6 +9,18 @@
   },
   "plugins": [
     {
+      "name": "pp-delivery-lead",
+      "source": "./plugins/pp-delivery-lead",
+      "description": "Orchestrator that breaks a Power Platform / Dynamics 365 CE request into parts and delegates them to specialist agents.",
+      "version": "1.0.0",
+      "keywords": [
+        "orchestrator",
+        "power-platform",
+        "dynamics-365",
+        "subagents"
+      ]
+    },
+    {
       "name": "personal-power-platform",
       "source": "./plugins/personal-power-platform",
       "description": "Power Platform agent that always creates components in the 'model' solution (publisher TC), creating both if missing.",

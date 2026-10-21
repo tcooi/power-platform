@@ -1,0 +1,78 @@
+{
+  "name": "ppp",
+  "owner": {
+    "name": "tc"
+  },
+  "metadata": {
+    "description": "Power Platform & Dynamics 365 CE consultant plugins for Claude Code and GitHub Copilot",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "personal-power-platform",
+      "source": "./plugins/personal-power-platform",
+      "description": "Power Platform agent that always creates components in the 'model' solution (publisher TC), creating both if missing.",
+      "version": "1.0.0",
+      "keywords": [
+        "power-platform",
+        "dataverse",
+        "solution",
+        "agent"
+      ]
+    },
+    {
+      "name": "pp-solution-alm",
+      "source": "./plugins/pp-solution-alm",
+      "description": "Solution, publisher, environment variable and pipeline discipline for Power Platform delivery.",
+      "version": "1.0.0",
+      "keywords": [
+        "alm",
+        "solutions",
+        "pac"
+      ]
+    },
+    {
+      "name": "d365-ce-developer",
+      "source": "./plugins/d365-ce-developer",
+      "description": "Dynamics 365 Customer Engagement customization and development.",
+      "version": "1.0.0",
+      "keywords": [
+        "dynamics-365",
+        "dataverse",
+        "ce",
+        "plugins",
+        "javascript"
+      ]
+    },
+    {
+      "name": "canvas-app-builder",
+      "source": "./plugins/canvas-app-builder",
+      "description": "Canvas app design and build for Power Platform consultants.",
+      "version": "1.0.0",
+      "keywords": [
+        "canvas-apps",
+        "power-fx"
+      ]
+    },
+    {
+      "name": "power-automate-builder",
+      "source": "./plugins/power-automate-builder",
+      "description": "Power Automate cloud flow design, build and troubleshooting.",
+      "version": "1.0.0",
+      "keywords": [
+        "power-automate",
+        "flows"
+      ]
+    },
+    {
+      "name": "copilot-studio-builder",
+      "source": "./plugins/copilot-studio-builder",
+      "description": "Copilot Studio agent design and delivery.",
+      "version": "1.0.0",
+      "keywords": [
+        "copilot-studio",
+        "agents"
+      ]
+    }
+  ]
+}

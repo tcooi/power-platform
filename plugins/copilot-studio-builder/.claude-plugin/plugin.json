@@ -1,0 +1,12 @@
+{
+  "name": "copilot-studio-builder",
+  "version": "1.0.0",
+  "description": "Copilot Studio agent design and delivery.",
+  "author": {
+    "name": "tc"
+  },
+  "keywords": [
+    "copilot-studio",
+    "agents"
+  ]
+}

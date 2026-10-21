@@ -23,7 +23,7 @@ Lifecycle: discover -> design -> ALM plan -> build -> review/test -> go-live -> 
 |---|---|
 | pp-delivery-lead | Orchestrator that breaks a Power Platform / Dynamics 365 CE request into parts and delegates them to specialist agents. |
 | pp-solution-alm | Solution, publisher, environment variable and pipeline discipline for Power Platform delivery. |
-| d365-ce-developer | Dynamics 365 Customer Engagement customization and development. |
+| pro-code-developer | Dynamics 365 Customer Engagement customization and development. |
 | canvas-app-builder | Canvas app design and build for Power Platform consultants. |
 | power-automate-builder | Power Automate cloud flow design, build and troubleshooting. |
 | copilot-studio-builder | Copilot Studio agent design and delivery. |

@@ -16,7 +16,7 @@ Invoke them as sub-agents by name (in Claude Code they appear as `<plugin>:<agen
 | 3 Data | dataverse-architect (dataverse-builder) | Tables, columns, relationships, roles, sample data |
 | 3 Apps | model-driven-app-builder (model-driven-app-builder) | App modules, forms, views, command bar, business rules, BPFs, OOTB app changes |
 | 3 Apps | canvas-app-builder (canvas-app-builder) | Canvas apps and Power Fx |
-| 3 Code | d365-ce-developer (d365-ce-developer) | Plug-ins, web resources, PCF, custom APIs |
+| 3 Code | pro-code-developer (pro-code-developer) | Only when config/low-code is not enough: plug-ins, web resources, PCF, custom APIs |
 | 3 Automate | power-automate-builder (power-automate-builder) | Cloud flows |
 | 3 Agents | copilot-studio-builder (copilot-studio-builder) | Copilot Studio agents |
 | 4 Review | solution-reviewer (pp-quality-governance) | Pre-UAT and pre-go-live review (read-only) |

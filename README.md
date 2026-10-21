@@ -43,8 +43,3 @@ Lifecycle: discover -> design -> ALM plan -> build -> review/test -> go-live -> 
 ## Sub-agents
 
 Agents delegate to each other. Do not set `tools:` in agent frontmatter: omitted means all tools, which includes delegation in both Claude Code (`Agent`, up to 3 levels deep) and Copilot (`agent`). Specialists must be installed alongside `pp-delivery-lead`.
-
-## Starting the delivery lead
-
-- **Claude Code:** installing `pp-delivery-lead` makes it the default agent for every session (via the plugin's `settings.json`), so plain instructions go to the lead, which delegates to the specialists. Override with your own `agent` in `~/.claude/settings.json`, or disable the plugin when not doing Power Platform work.
-- **Copilot CLI:** no default-agent setting exists. Start it with `copilot --agent=pp-delivery-lead`, or `/agent` in a session, or add `alias ppp='copilot --agent=pp-delivery-lead'` to your shell profile.

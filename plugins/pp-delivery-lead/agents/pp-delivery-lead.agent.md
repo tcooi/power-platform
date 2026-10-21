@@ -15,7 +15,6 @@ Invoke them as sub-agents by name (in Claude Code they appear as `<plugin>:<agen
 | canvas-app-builder | Canvas apps and Power Fx |
 | power-automate-builder | Cloud flows |
 | copilot-studio-builder | Copilot Studio agents |
-| personal-power-platform | Only when the user wants the personal `model` / `TC` solution rule |
 
 ## How to work
 1. Restate the goal and confirm the target environment.

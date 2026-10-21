@@ -20,7 +20,6 @@ copilot plugin install pp-solution-alm@ppp
 | Plugin | Purpose |
 |---|---|
 | pp-delivery-lead | Orchestrator: splits work and delegates to the specialist agents |
-| personal-power-platform | Builds into solution `model` / publisher `TC` |
 | pp-solution-alm | Solutions, publishers, env vars, pac, pipelines |
 | d365-ce-developer | D365 CE customization, plug-ins, web resources, OOTB app changes |
 | canvas-app-builder | Canvas apps and Power Fx |

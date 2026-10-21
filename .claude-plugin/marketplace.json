@@ -21,18 +21,6 @@
       ]
     },
     {
-      "name": "personal-power-platform",
-      "source": "./plugins/personal-power-platform",
-      "description": "Power Platform agent that always creates components in the 'model' solution (publisher TC), creating both if missing.",
-      "version": "1.0.0",
-      "keywords": [
-        "power-platform",
-        "dataverse",
-        "solution",
-        "agent"
-      ]
-    },
-    {
       "name": "pp-solution-alm",
       "source": "./plugins/pp-solution-alm",
       "description": "Solution, publisher, environment variable and pipeline discipline for Power Platform delivery.",

@@ -1,14 +1,16 @@
 ---
 name: solution-checker-review
-description: "Run and triage pac solution check / Solution Checker results. Use before each release."
+description: "Run and triage pac solution check / solution checker results. Use before each release."
 ---
 
-# Solution Checker review
+# Solution checker review
 
 ```
-pac solution check --path out/<sol>_managed.zip --outputDirectory out/check
+pac solution check --path out/<sol>_managed.zip --outputDirectory out/check --geo <Europe|UnitedStates|...>
 ```
-- Triage by severity: Critical/High must be fixed or have a written waiver; Medium reviewed; Low tracked.
-- Group findings by rule, fix at the root (e.g. sync XHR, deprecated APIs, missing `RetrievePrimaryAttribute`).
-- Record waivers in `docs/checker-waivers.md` with reason and owner.
-- Add as a blocking step in the pipeline.
+- `--ruleSet` defaults to "Solution Checker"; use "AppSource Certification" for ISV work. `--saveResults` stores results for the Solution Health Hub.
+- Critical/High: fix or written waiver. Medium: review. Low: track.
+- Fix at the root (sync XHR, deprecated APIs, plug-in anti-patterns). Record waivers in `docs/checker-waivers.md` with reason and owner.
+- In CI: `check-solution` (GitHub) or `PowerPlatformChecker@2` with `ErrorLevel`/`ErrorThreshold` (Azure DevOps). Managed environments can enforce checker on import.
+
+Sources: learn.microsoft.com/power-platform/developer/cli/reference/solution#pac-solution-check

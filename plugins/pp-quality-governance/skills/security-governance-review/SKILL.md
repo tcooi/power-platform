@@ -1,13 +1,14 @@
 ---
 name: security-governance-review
-description: "Review governance: DLP policies, connection and flow ownership, environment settings, roles and licensing. Use before go-live."
+description: "Review governance before go-live: DLP, connection and flow ownership, managed environment settings, MCP client allow-listing, roles and licensing. Use before go-live."
 ---
 
 # Security and governance review
 
-- DLP: connectors used vs the environment's policy groups (Business/Non-Business/Blocked); no HTTP to unknown hosts.
-- Flows/agents/connections owned by service accounts or app users, with a co-owner; no personal connections in PROD.
-- Secrets in environment variables (secret type) or Key Vault, not in flow definitions.
-- Roles: no System Administrator for end users; audit enabled on sensitive tables.
-- Sharing: apps shared to security groups, not individuals.
-- Licensing: premium connectors, Dataverse capacity, Copilot Studio capacity for the actual user count.
+- DLP: connectors used vs environment policy groups; no HTTP to unknown hosts (`pac admin dlp-policy list`).
+- Flows, agents and connections owned by service accounts or application users with a co-owner; no personal connections in PROD.
+- Secrets in secret-type environment variables or Key Vault, not in flow definitions or exported values.
+- Roles: no System Administrator for end users or app users (note `pac admin create-service-principal` defaults to it); audit on sensitive tables.
+- Apps shared to security groups, not individuals.
+- Dataverse MCP: enabled only where needed, allowed clients reviewed per environment; consumption billed in Copilot Credits outside Copilot Studio.
+- Licensing: premium connectors, managed environments, Dataverse capacity, Copilot Studio / Copilot Credits for real user counts.

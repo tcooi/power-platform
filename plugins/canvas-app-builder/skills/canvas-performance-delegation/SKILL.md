@@ -5,12 +5,11 @@ description: "Review canvas app formulas for delegation warnings and performance
 
 # Canvas performance and delegation
 
-- Fix every blue delegation warning: use delegable functions/operators for the data source; move filtering server-side (`Filter` on indexed columns).
-- Reduce `OnStart`; use named formulas (`App.Formulas`) and lazy-load per screen.
-- Use `Concurrent()`, cache lookups into collections only when small and rarely changing.
-- Minimise controls per screen (< ~300), avoid nested galleries, set images to proper sizes.
-- Use the Monitor tool and Solution Checker/App Checker for hotspots.
-- Raise the data row limit only with a clear reason.
+- Fix every delegation warning: delegable functions/operators for the data source, filter server-side on indexed columns.
+- Reduce `OnStart`; use named formulas (`App.Formulas`) and load per screen.
+- `Concurrent()` for parallel loads; cache only small, rarely changing lookups.
+- Keep control counts low, avoid nested galleries, size images properly.
+- Profile with Monitor; check App Checker / accessibility errors (the canvas authoring MCP exposes them when the `canvas-apps` plugin is connected).
+- Raise the data row limit only with a written reason.
 
-## Tooling
-Use Microsoft's `canvas-apps` plugin for live authoring, compile and app-checker errors when installed; otherwise `pac canvas unpack` / `pac canvas pack` to edit source files, and the Monitor tool in Studio for profiling. See `tool-selection-guide`.
+**Tooling**: edit with Microsoft's `canvas-apps` plugin (coauthoring). To read source without editing: `pac canvas download` with `-d` extracts `.pa.yaml`.

@@ -1,12 +1,13 @@
 ---
 name: custom-api-and-actions
-description: "Design Dataverse custom APIs and custom actions with plug-ins as the implementation. Use for reusable server-side operations called from flows, apps or integrations."
+description: "Design Dataverse custom APIs implemented by plug-ins. Use for reusable server-side operations called from flows, apps, generative pages, agents or integrations."
 ---
 
 # Custom API
 
-- Create a Custom API record (unique name with prefix, binding type, allowed step type, request parameters, response properties) inside the solution.
-- Implement logic in a plug-in registered on the Custom API message, PostOperation/synchronous.
-- Prefer Custom API over legacy custom process actions for new work.
-- Call from Power Fx (`Environment`/ connector), flows (Perform an unbound action), Web API (`POST /<name>`).
-- Secure with a privilege so only specific roles can execute.
+- Create the Custom API (unique name with prefix, binding type, allowed step type, request parameters, response properties) in the solution, e.g. with the Plug-in Registration Tool, then associate the plug-in type.
+- Prefer Custom APIs over legacy custom process actions for new work.
+- Callers: Web API (`POST /api/data/v9.2/<name>`), flows (perform an unbound/bound action), Power Fx, generative pages, Dataverse CLI `dataverse api …`, and Copilot Studio/agents as tools.
+- Secure with an execute privilege so only specific roles can call it; custom APIs run as the calling user.
+
+Sources: learn.microsoft.com/power-apps/developer/data-platform/custom-api, …/create-custom-api-prt

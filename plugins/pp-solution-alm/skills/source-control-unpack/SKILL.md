@@ -1,15 +1,24 @@
 ---
 name: source-control-unpack
-description: "Export, unpack and commit solutions to git with a clean folder structure. Use for source-controlled solution development."
+description: "Put solutions under source control with Dataverse Git integration or pac solution clone/export/unpack. Use for source-controlled solution development."
 ---
 
 # Source control for solutions
 
+## Option A: Dataverse Git integration (preferred for maker-heavy teams)
+- Connect the solution (or environment) to Azure DevOps or GitHub from **Solutions > Source control**; commit and pull in the maker portal.
+- Use only in development environments; development and target environments must be managed environments. Several dev environments can bind to the same Git location.
+- Uses the YAML source format; repack with `pac solution pack --folder <root>` (pac 2.4.1+).
+
+## Option B: pac CLI (code-first teams, CI)
 ```
-pac solution export --name <sol> --path out/<sol>.zip --managed false
-pac solution unpack --zipfile out/<sol>.zip --folder src/<sol> --packagetype Both --processCanvasApps
+pac solution export --name <sol> --path out/<sol>.zip
+pac solution unpack --zipfile out/<sol>.zip --folder src/<sol> --packagetype Both
 ```
-- Commit `src/<sol>`; ignore `out/`.
-- Run `pac solution sync` or re-export + unpack to update; review diffs of XML before merging.
-- Branch per feature; avoid two developers editing the same component (XML merge conflicts).
-- Rebuild: `pac solution pack --zipfile out/<sol>_managed.zip --folder src/<sol> --packagetype Managed`.
+- Use `pac solution clone --name <sol>` when you need a `.cdsproj` project (to add plug-in or PCF references with `pac solution add-reference`); use export + unpack when only updating existing content.
+- `pac solution sync` refreshes a cloned project from the environment.
+- Build managed: `pac solution pack --zipfile out/<sol>_managed.zip --folder src/<sol> --packagetype Managed`.
+- Never open solution zips with standard zip tools; never hand-create components in XML.
+- Canvas apps: rely on solution export/Git integration (`pac canvas pack/unpack` is deprecated).
+
+Sources: learn.microsoft.com/power-platform/alm/git-integration/overview, learn.microsoft.com/power-platform/developer/cli/reference/solution

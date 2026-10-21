@@ -1,15 +1,14 @@
 ---
 name: business-rules-and-bpf
-description: "Create business rules and business process flows for model-driven apps. Use for form logic and guided stage-based processes."
+description: "Create business rules and business process flows for model-driven apps with Microsoft's /app-builder skill or the designers. Use for form logic and guided stage-based processes."
 ---
 
 # Business rules and BPFs
 
-**Business rules**: scope = Entity (runs everywhere incl. server) vs Form. Use for show/hide, required, default values, simple validation. Avoid long chains; document the order.
+**Tooling**: `/app-builder` (Microsoft `model-apps` plugin) creates business rules and BPFs as part of an app plan; otherwise use the designers in the maker portal inside the solution, then export/unpack.
 
-**Business process flows**: stages and steps map to required columns; keep to 3-6 stages; use branching conditions sparingly; one active BPF per record view by default.
-- BPFs are tables: ship them in the solution, assign security roles.
-- Prefer a flow or plug-in for logic that must run regardless of UI.
+**Business rules**: scope Entity (also runs server-side) vs Form. Use for show/hide, required, defaults and simple validation. Keep chains short and document order.
 
-## Tooling
-Business rules and BPFs are authored in their designers (maker portal) inside the solution, then exported/unpacked via `pac solution`. For logic that must run server-side regardless of UI, use a flow or a plug-in (`pro-code-developer`). See `tool-selection-guide`.
+**Business process flows**: stages map to required columns; 3–6 stages; branch sparingly. BPFs are tables: include them in the solution and grant role privileges.
+
+For logic that must run regardless of UI use a flow, a low-code (Power Fx) plug-in or a C# plug-in (`pro-code-developer`).

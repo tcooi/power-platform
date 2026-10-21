@@ -1,33 +1,62 @@
 ---
 name: tool-selection-guide
-description: "Choose the right tool for a Power Platform task: pac CLI, Dataverse Web API, Dataverse MCP, maker designers, Microsoft plugins or CI actions. Use before running any command that changes or reads an environment."
+description: "Choose the best tool for a Power Platform task based on Microsoft Learn guidance: Microsoft's official agent plugins, Dataverse MCP, Dataverse CLI, Dataverse SDK for Python, pac CLI, Dataverse Web API, designers, pipelines and CI actions. Use before any command that reads or changes an environment."
 ---
 
 # Tool selection guide
 
-Pick the tool by task, not habit. Always confirm the environment first (`pac org who`).
+Our plugins hold the consulting method (phases, approvals, standards). **Building is done with Microsoft's official tooling**, which validates what it creates. Prefer the first available option in each row.
+
+## 1. Microsoft agent plugins (install these first)
+
+| Area | Plugin (marketplace) | Use for |
+|---|---|---|
+| Dataverse schema, data, queries, solutions, security, admin | `dataverse` (Claude Code: `dataverse@claude-plugins-official`; Copilot: `dataverse@awesome-copilot`; source `microsoft/Dataverse-skills`) | Skills `dv-connect`, `dv-metadata`, `dv-data`, `dv-query`, `dv-solution`, `dv-security`, `dv-admin` |
+| Model-driven apps, generative pages | `model-apps@power-platform-skills` | `/app-builder` (tables, forms, views, charts, business rules, BPFs, app module, sitemap), `/genpage` |
+| Canvas apps | `canvas-apps@power-platform-skills` | `/canvas-app` via live coauthoring + canvas authoring MCP (validates `.pa.yaml`) |
+| Cloud flows | `power-automate@power-platform-skills` | `/build-flow`, `/create-flow`, `/debug-flow`, `/manage-flows` via the bundled FlowAgent MCP |
+| PCF code components | `pcf@power-platform-skills` | Scaffold, build, package PCF |
+| Code apps, Power Pages | `code-apps-preview`, `power-pages` (`@power-platform-skills`) | When the design uses them |
+
+Install all Power Platform plugins: `/plugin marketplace add microsoft/power-platform-skills`, then install the plugins above.
+
+## 2. Underlying tools (what those plugins and our agents use)
+
+| Tool | Best for | Notes |
+|---|---|---|
+| **Dataverse MCP server** (`https://<org>.crm.dynamics.com/api/mcp`) | Interactive queries, schema discovery, small record or metadata operations | Admin must enable it and allow-list the client per environment; tenant admin consent for the CLI proxy. **Billed in Copilot Credits** for agents outside Copilot Studio (since 15 Dec 2025) unless users have D365 Premium or M365 Copilot licences. `delete_*` tools need explicit approval. Preview tools at `/api/mcp_preview`. |
+| **Dataverse CLI** (`npm i -g @microsoft/dataverse`, preview) | Auth profiles (shared with pac), headless data query/CRUD/upsert, invoking custom APIs, local MCP proxy (`dataverse mcp <url>`) | `dataverse mcp <url> --validate` checks MCP prerequisites |
+| **Dataverse SDK for Python** | Scripted schema operations, bulk data, paging, transformations, analytics | Uses the Web API |
+| **pac CLI** | Solution ALM (`pac solution`), environments (`pac admin`), role assignment (`pac admin assign-user`), plug-ins (`pac plugin`), PCF (`pac pcf`), model apps (`pac model`), Copilot Studio (`pac copilot`), pipelines (`pac pipeline`) | `pac copilot mcp --run` exposes pac as a local MCP server (needs .NET 10) |
+| **Dataverse Web API** | Only what managed tools don't cover | Metadata writes with `MSCRM.SolutionUniqueName: <solution>`; read back with `Consistency: Strong` (metadata cache ~30 s) |
+| **Maker designers** | Security role privileges, command bar (modern designer), anything without an API skill | Always inside the working solution |
+
+## 3. By task
 
 | Task | Use | Avoid |
 |---|---|---|
-| Export, import, pack, unpack, version, check solutions | `pac solution ...` | Hand-zipping solutions |
-| Source-controlled solution files | `pac solution unpack/pack` + git | Editing managed XML by hand |
-| Tables, columns, relationships, choices (repeatable) | Dataverse **Web API** with `MSCRM.SolutionUniqueName` header, schema kept as JSON in the repo | Creating in the Default solution |
-| Bulk load / migration | Web API `$batch`, `CreateMultiple`, `Upsert` with alternate keys | MCP or one-by-one calls |
-| Ad hoc reads, quick lookups, small record edits | **Dataverse MCP** if connected (e.g. `read_query`, `create_record`) | Using it for schema or solution-aware changes; destructive calls without user approval |
-| Security roles, privileges | Maker/admin UI to author, then ship in the solution; Web API to read and verify privileges | Editing roles in PROD |
-| Forms, views, sitemap, app modules, business rules, BPFs, charts | App designer / maker portal, then `pac solution export` + unpack to commit | Hand-writing FormXml/SiteMap XML unless fixing a diff |
-| Command bar | Modern command designer (Power Fx) | Ribbon XML |
-| PCF controls, plug-in projects | `pac pcf`, `pac plugin`, `dotnet`, `npm` | Copying unmanaged DLLs between envs |
-| Cloud flows | Microsoft `power-automate` plugin tools (validate, connections, run history). Fallback: Web API `workflow` table with `clientdata` JSON | Writing flow JSON blind without validating |
-| Canvas apps | Microsoft `canvas-apps` plugin (live authoring and compile). Fallback: `pac canvas unpack/pack` | Editing `.msapp` binaries |
-| Copilot Studio agents | Copilot Studio CLI/plugin or the Copilot Studio UI, ship in a solution | Editing published agents in PROD |
-| Docs and syntax checks | Microsoft Learn MCP (bundled) | Answering from memory |
-| CI/CD | `powerplatform-actions` (GitHub) or Power Platform Build Tools (Azure DevOps) | Manual imports to UAT/PROD |
-| Tests | Test Engine (`pac test run`), EasyRepro/Playwright, unit tests | Only manual clicking |
+| Tables, columns, relationships, keys, choices | `dv-metadata` → Python SDK / Web API with solution header | Hand-written solution XML; Default solution |
+| Forms, views, sitemap, app module, BPF, business rules | `/app-builder` (model-apps) or `dv-metadata` for forms/views; `pac model create --solution <name>` | `pac model create` without `--solution` (defaults to Default) |
+| Bulk data / migration | `dv-data` → `CreateMultiple`/`UpdateMultiple`/`UpsertMultiple`, `$batch` (≤1,000 ops) | One request per row; MCP for volume |
+| Ad hoc query | Dataverse MCP `read_query` / `dv-query` | Exporting to Excel by hand |
+| Security role assignment | `dv-security` or `pac admin assign-user` / `assign-group` | Editing roles in PROD |
+| Solution export/import/pack/check | `dv-solution` or `pac solution …` | Opening zips with standard tools |
+| Source control | Dataverse Git integration (dev environments; managed environments required) or `pac solution clone`/`export`+`unpack` | `pac canvas pack/unpack` (deprecated) |
+| Deployment | Pipelines in Power Platform (`pac pipeline deploy`), or GitHub Actions / Azure DevOps Build Tools v2 with a deployment settings file (`pac solution create-settings`) | Manual imports into UAT/PROD |
+| Cloud flows | `power-automate` plugin | Writing `clientdata` JSON blind |
+| Canvas apps | `canvas-apps` plugin (coauthoring) | Editing `.msapp` or `.fx.yaml` |
+| Plug-ins | `pac plugin init --skip-signing` → plug-in package → `pac plugin push` / Plug-in Registration Tool | ILMerge (unsupported) |
+| PCF | `pcf` plugin or `pac pcf init -fw react` → solution project | Shipping the temporary `PowerAppsTools_<prefix>` solution |
+| Copilot Studio agents | `pac copilot clone/pull/push/pack` or the Copilot Studio VS Code extension | Pushing without pulling first |
+| UI tests | Power Platform Playwright samples | Test Engine / `pac test` (deprecated April 2026) |
+| Docs and syntax | Microsoft Learn MCP (bundled) | Answering from memory |
 
 ## Rules
-1. Everything that creates or changes a component goes into the working solution, whatever the tool.
-2. Prefer the least powerful tool that does the job; read-only first.
-3. Anything destructive (delete rows, tables, columns, solutions) needs explicit user approval, in any tool.
-4. If the preferred tool is not available (not installed or not signed in), say so, name the fallback in the table, and ask before using it.
-5. Repeatable beats clicked: when something was done in a designer, export and unpack so it lands in source control.
+1. **Environment-first metadata**: make changes in Dataverse through a managed API, then export and unpack (or commit via Git integration). Never create components by writing solution XML.
+2. Everything goes into the working unmanaged solution. If a tool cannot target a solution, add the component afterwards with `pac solution add-solution-component` and verify.
+3. Confirm environment, solution and publisher prefix before the first change.
+4. Read-only first; least powerful tool that does the job.
+5. Destructive actions (delete rows, tables, columns, solutions, bulk delete) need explicit user approval, whatever the tool.
+6. If the preferred tool is missing, say so, name the fallback from this guide, and ask before using it. Do not invent commands; check Microsoft Learn.
+
+Sources: learn.microsoft.com/power-apps/developer/data-platform/agents-plugin/, …/maker/data-platform/data-platform-mcp, …/developer/data-platform/cli/, learn.microsoft.com/power-platform/developer/cli/reference/

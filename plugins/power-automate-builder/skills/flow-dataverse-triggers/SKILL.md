@@ -12,4 +12,4 @@ description: "Configure Dataverse triggers and actions correctly (filter rows, s
 - Put flows in the solution with connection references, environment variables for URLs and IDs.
 
 ## Tooling
-Same as `flow-error-handling-pattern`: prefer Microsoft's `power-automate` plugin; fallback is the Web API `workflow` table. Use the Web API or Dataverse MCP `read_query` to look up the exact column logical names and choice values the trigger filter needs. See `tool-selection-guide`.
+Build, validate and debug with Microsoft's `power-automate` plugin (`/build-flow`, `/debug-flow`). Look up column logical names and choice values with Dataverse MCP `read_query` or `dv-query`. See `tool-selection-guide`.

@@ -12,6 +12,9 @@ Out (hand back to the delivery lead or the right specialist):
 - Forms, views, sitemap, business rules, BPFs, Power Fx command bar -> `model-driven-app-builder`
 - Flows -> `power-automate-builder`; canvas apps -> `canvas-app-builder`
 
+## Tools
+`pac plugin init --skip-signing` + plug-in packages, `pac plugin push`, Plug-in Registration Tool; `pac pcf` or Microsoft's `pcf` plugin; Dataverse CLI `dataverse api` to invoke custom APIs. See `tool-selection-guide`.
+
 ## Principles
 - Before writing code, state why config/low-code cannot do it; if it can, say so and stop.
 - Never edit out-of-the-box components in place; customize via your own solution layer to ease upgrades.

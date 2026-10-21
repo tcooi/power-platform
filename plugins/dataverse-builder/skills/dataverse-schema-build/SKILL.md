@@ -1,19 +1,24 @@
 ---
 name: dataverse-schema-build
-description: "Create Dataverse tables, columns and relationships in a solution via the Web API / pac. Use when implementing an approved data model."
+description: "Create Dataverse tables, columns, relationships, choices and alternate keys in a solution using Microsoft's dv-metadata skill, the Dataverse SDK for Python or the Web API. Use when implementing an approved data model."
 ---
 
 # Dataverse schema build
 
-1. `pac auth list`, `pac org who`; get an access token (`az account get-access-token --resource <orgUrl>`).
-2. Confirm solution + publisher prefix exist.
-3. Create each table with `POST /api/data/v9.2/EntityDefinitions` and header `MSCRM.SolutionUniqueName: <solution>`.
-4. Add columns via `POST EntityDefinitions(LogicalName='<t>')/Attributes`.
-5. Relationships via `POST RelationshipDefinitions` (OneToMany / ManyToMany).
-6. `POST PublishAllXml` (or publish the solution) and verify with a GET.
-7. Wait for propagation (30-60s) before creating dependents; retry on 'not found' metadata errors.
+## Tool order
+1. `dv-metadata` (Microsoft `dataverse` plugin) — confirms environment, solution and prefix, creates via managed APIs, then exports/unpacks.
+2. Dataverse SDK for Python (`client.tables`) for scripted, repeatable schema.
+3. Web API `EntityDefinitions` when neither is available.
+4. Dataverse MCP `create_table`/`update_table` only for prototypes or small tweaks; then confirm the table is in the solution (`pac solution add-solution-component` if not).
 
-Prefer defining the schema as JSON files under `src/schema/` so it is repeatable across environments, but ship via the solution, not by re-running scripts, for TEST/PROD.
+## Web API essentials
+- `POST /api/data/v9.2/EntityDefinitions` with header `MSCRM.SolutionUniqueName: <solution>`; required: `SchemaName` (publisher prefix), `DisplayName`, `DisplayCollectionName`, `HasNotes`, `HasActivities`, `PrimaryNameAttribute` plus one `StringAttributeMetadata` with `IsPrimaryName: true`.
+- Columns: `POST EntityDefinitions(LogicalName='<t>')/Attributes`; relationships: `POST RelationshipDefinitions`; option changes via `InsertOptionValue` etc. with `SolutionUniqueName` parameter.
+- Set only `LocalizedLabels` in labels.
+- Read back with `Consistency: Strong` (metadata is cached ~30 s, new items can 404 otherwise).
+- Publish: `PublishAllXml` or `pac solution publish`.
 
-## Choosing the tool
-Web API is the default for repeatable schema; use the maker portal for one-off tweaks (then export/unpack). Dataverse MCP (if connected) is for reading/validating, not for solution-aware schema. See `tool-selection-guide`.
+## After building
+`pac solution export --name <sol> --path out/<sol>.zip` and `pac solution unpack --zipfile out/<sol>.zip --folder src/<sol>` (or commit through Git integration). Computed columns: use formula columns, not calculated columns (see `ce-customization-patterns`).
+
+Sources: learn.microsoft.com/power-apps/developer/data-platform/webapi/create-update-entity-definitions-using-web-api, …/agents-plugin/reference#dv-metadata

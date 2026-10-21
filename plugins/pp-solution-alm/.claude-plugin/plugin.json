@@ -1,6 +1,6 @@
 {
   "name": "pp-solution-alm",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Solution, publisher, environment variable and pipeline discipline for Power Platform delivery.",
   "author": {
     "name": "tc"

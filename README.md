@@ -19,11 +19,13 @@ copilot plugin install pp-solution-alm@ppp
 
 Lifecycle: discover -> design -> ALM plan -> build -> review/test -> go-live -> handover. Start with `pp-delivery-lead`; it delegates to the others.
 
+These plugins carry the consulting method (phases, approvals, standards). **Building is done with Microsoft's official tooling**, chosen per task by the `tool-selection-guide` skill.
+
 | Plugin | Purpose |
 |---|---|
 | pp-delivery-lead | Orchestrator that breaks a Power Platform / Dynamics 365 CE request into parts and delegates them to specialist agents. |
 | pp-solution-alm | Solution, publisher, environment variable and pipeline discipline for Power Platform delivery. |
-| pro-code-developer | Dynamics 365 Customer Engagement customization and development. |
+| pro-code-developer | Pro-code development for Power Platform and D365 CE: C# plug-ins, JavaScript web resources, PCF controls, custom APIs and integrations. |
 | canvas-app-builder | Canvas app design and build for Power Platform consultants. |
 | power-automate-builder | Power Automate cloud flow design, build and troubleshooting. |
 | copilot-studio-builder | Copilot Studio agent design and delivery. |
@@ -34,21 +36,34 @@ Lifecycle: discover -> design -> ALM plan -> build -> review/test -> go-live -> 
 
 ## Prerequisites and connecting
 
-The skills are instructions only. They contain no connectors, scripts or credentials; agents act through tools in your session, so set these up first.
+### 1. Microsoft plugins (recommended; they do the actual building)
+Claude Code:
+```
+/plugin marketplace add microsoft/power-platform-skills
+/plugin install model-apps@power-platform-skills
+/plugin install canvas-apps@power-platform-skills
+/plugin install power-automate@power-platform-skills
+/plugin install pcf@power-platform-skills
+/plugin install dataverse@claude-plugins-official
+```
+Copilot CLI: same marketplace and plugins, but install Dataverse with `/plugin install dataverse@awesome-copilot`. Then ask: "Connect to my Dataverse environment" (the `dv-connect` skill sets up auth and the Dataverse MCP server).
 
+### 2. Local tools
 | Need | Used for | Setup |
 |---|---|---|
-| Power Platform CLI (`pac`) | solutions, PCF, plug-ins, checker, auth | install (`dotnet tool install --global Microsoft.PowerApps.CLI.Tool` or the VS Code extension), then `pac auth create --environment <url>`; check with `pac org who` |
-| Azure CLI (`az`) | tokens for the Dataverse Web API | install, `az login --tenant <tenant>`; token via `az account get-access-token --resource <orgUrl>` |
-| Node.js, .NET SDK | PCF builds, plug-in builds | install LTS versions |
-| Git (+ GitHub or Azure DevOps access) | source control, pipelines | pipelines also need an Entra app registration and secrets stored in the CI system |
-| Dataverse MCP (optional) | quick reads and small edits of data | connect Microsoft's Dataverse MCP server to your client; availability varies, see Microsoft docs |
-| Microsoft Learn MCP | doc lookups | bundled with `pp-delivery-lead` (`.mcp.json`), no setup |
-| Flow and canvas tooling (optional) | create/debug flows, edit canvas apps | install Microsoft's `power-automate` and `canvas-apps` plugins from `microsoft/power-platform-skills` |
+| Power Platform CLI (`pac`) | solutions, environments, roles, plug-ins, PCF, model apps, Copilot Studio, pipelines | `dotnet tool install --global Microsoft.PowerApps.CLI.Tool`, then `pac auth create --environment <url>`; check `pac org who` |
+| .NET SDK 10+ | canvas-apps plugin, `pac copilot mcp`, plug-in builds | `dotnet --list-sdks` |
+| Node.js 18+ | Dataverse CLI / MCP proxy, power-automate plugin, PCF | |
+| Azure CLI | power-automate plugin, Web API tokens | `az login --allow-no-subscriptions` |
+| Dataverse CLI (preview) | headless data ops, local MCP proxy | `npm install -g @microsoft/dataverse` (installed by `dv-connect`) |
+| Git + GitHub/Azure DevOps | source control, CI/CD | |
 
-Which tool for which task is in the `tool-selection-guide` skill (`pp-delivery-lead`).
+### 3. Admin setup (once per environment)
+- **Dataverse MCP**: admin turns on "Allow MCP clients to interact with Dataverse MCP server" and enables the client (GitHub Copilot, Claude, or "Dataverse MCP CLI tool") in Power Platform admin center; tenant admin consent for the CLI proxy. Billed in Copilot Credits outside Copilot Studio.
+- **Managed environments** for pipeline targets and Dataverse Git integration.
+- **Canvas apps**: coauthoring on in Power Apps Studio for apps edited by the plugin.
 
-Targeting: every agent works on the environment `pac` is currently authenticated to. `pp-delivery-lead` runs a preflight (`pac org who`, `az account show`), shows you the environment and asks you to confirm before building. Use `pac auth select` / `pac org select` to switch.
+Microsoft Learn MCP is bundled with `pp-delivery-lead`. Targeting: agents work on the environment `pac` is authenticated to; `pp-delivery-lead` runs a preflight and asks you to confirm it.
 
 ## Cross-tool authoring rules
 

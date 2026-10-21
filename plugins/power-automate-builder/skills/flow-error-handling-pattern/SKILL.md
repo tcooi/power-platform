@@ -12,4 +12,4 @@ Structure: `Try` scope -> `Catch` scope (Configure run after: has failed, timed 
 - Avoid infinite loops from triggers updating the same row: filter columns and add a guard column.
 
 ## Tooling
-Build and validate flows with Microsoft's `power-automate` plugin tools (validate, connections, run diagnosis) when installed. Fallback: write the flow into a solution via the Dataverse Web API `workflow` table (`clientdata` JSON), which has no pre-save validation, so test in DEV and read run history afterward. See `tool-selection-guide`.
+Build, validate and debug with Microsoft's `power-automate` plugin (`/build-flow`, `/debug-flow`). Look up column logical names and choice values with Dataverse MCP `read_query` or `dv-query`. See `tool-selection-guide`.

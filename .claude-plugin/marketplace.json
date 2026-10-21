@@ -12,7 +12,7 @@
       "name": "pp-delivery-lead",
       "source": "./plugins/pp-delivery-lead",
       "description": "Orchestrator that breaks a Power Platform / Dynamics 365 CE request into parts and delegates them to specialist agents.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "keywords": [
         "orchestrator",
         "power-platform",
@@ -24,7 +24,7 @@
       "name": "pp-solution-alm",
       "source": "./plugins/pp-solution-alm",
       "description": "Solution, publisher, environment variable and pipeline discipline for Power Platform delivery.",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "keywords": [
         "alm",
         "solutions",
@@ -35,7 +35,7 @@
       "name": "pro-code-developer",
       "source": "./plugins/pro-code-developer",
       "description": "Pro-code development for Power Platform and D365 CE: C# plug-ins, JavaScript web resources, PCF controls, custom APIs and integrations.",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "keywords": [
         "plugins",
         "pcf",
@@ -48,7 +48,7 @@
       "name": "canvas-app-builder",
       "source": "./plugins/canvas-app-builder",
       "description": "Canvas app design and build for Power Platform consultants.",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "keywords": [
         "canvas-apps",
         "power-fx"
@@ -58,7 +58,7 @@
       "name": "power-automate-builder",
       "source": "./plugins/power-automate-builder",
       "description": "Power Automate cloud flow design, build and troubleshooting.",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "keywords": [
         "power-automate",
         "flows"
@@ -68,7 +68,7 @@
       "name": "copilot-studio-builder",
       "source": "./plugins/copilot-studio-builder",
       "description": "Copilot Studio agent design and delivery.",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "keywords": [
         "copilot-studio",
         "agents"
@@ -78,7 +78,7 @@
       "name": "pp-discovery-design",
       "source": "./plugins/pp-discovery-design",
       "description": "Discovery and solution design for Power Platform / D365 CE engagements: requirements, fit-gap, data and security model, design documents.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "keywords": [
         "discovery",
         "fit-gap",
@@ -90,7 +90,7 @@
       "name": "dataverse-builder",
       "source": "./plugins/dataverse-builder",
       "description": "Builds Dataverse schema, security roles and sample data from an approved design.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "keywords": [
         "dataverse",
         "tables",
@@ -102,7 +102,7 @@
       "name": "model-driven-app-builder",
       "source": "./plugins/model-driven-app-builder",
       "description": "Builds model-driven apps: app modules, sitemap, forms, views, command bar, business rules and process flows.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "keywords": [
         "model-driven",
         "forms",
@@ -115,7 +115,7 @@
       "name": "pp-quality-governance",
       "source": "./plugins/pp-quality-governance",
       "description": "Review, test, governance and handover for Power Platform / D365 CE solutions.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "keywords": [
         "quality",
         "testing",

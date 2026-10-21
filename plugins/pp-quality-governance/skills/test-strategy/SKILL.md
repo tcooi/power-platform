@@ -1,18 +1,19 @@
 ---
 name: test-strategy
-description: "Define test strategy: unit tests for plug-ins, Test Engine / EasyRepro UI tests, flow smoke tests and UAT. Use when planning quality assurance."
+description: "Define the test strategy: plug-in unit tests, Power Platform Playwright UI tests, flow smoke tests, agent evaluations and UAT. Use when planning quality assurance."
 ---
 
 # Test strategy
 
 | Layer | Tool |
 |---|---|
-| Plug-ins | Unit tests with FakeXrmEasy / XrmMockup |
-| Canvas apps | Power Apps Test Engine (`pac test run`) |
-| Model-driven UI | EasyRepro / Playwright |
-| Flows | Trigger with test data; verify run history; smoke test after deploy |
-| Agents | Copilot Studio evaluation sets |
+| Plug-ins | Unit tests (e.g. FakeXrmEasy) |
+| Canvas, model-driven, custom pages, generative pages | **Power Platform Playwright samples** (TypeScript, `AppProvider`, `ModelDrivenAppPage`, `CanvasAppPage`); AI-assisted authoring with the Playwright MCP |
+| Flows | Trigger with test data, check run history; `/debug-flow` from the power-automate plugin on failures |
+| Copilot Studio agents | Evaluation sets in Copilot Studio |
 | Security | One test user per role |
 | Performance | Representative data volume in TEST |
 
-Run unit + smoke tests in the pipeline; manual UAT only for acceptance.
+Power Apps Test Engine and `pac test run` are **deprecated (April 2026)**; migrate existing YAML tests with Microsoft's migration guide. Run unit and smoke tests in CI; manual UAT for acceptance only.
+
+Sources: learn.microsoft.com/power-platform/developer/playwright-samples/overview, learn.microsoft.com/power-platform/important-changes-coming#deprecation-of-test-engine
